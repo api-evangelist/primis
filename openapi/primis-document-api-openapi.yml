@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: REST Auth Document API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Document
+  description: Documents API
+paths:
+  /documents:
+    get:
+      tags:
+      - Document
+      summary: Get all the documents for a retailer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimisDocument'
+        '500':
+          description: Server Error
+    post:
+      tags:
+      - Document
+      summary: Create new document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrimisDocument'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrimisDocument'
+        '500':
+          description: Server Error
+  /documents/{id}:
+    put:
+      tags:
+      - Document
+      summary: Update a document
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrimisDocument'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrimisDocument'
+        '500':
+          description: Server Error
+components:
+  schemas:
+    PrimisDocument:
+      properties:
+        name:
+          title: PrimisDocument.name
+          type: string
+        url:
+          title: PrimisDocument.url
+          type: string
+        description:
+          title: PrimisDocument.description
+          type: string
+        retailer:
+          title: PrimisDocument.retailer
+          type: string
+        active:
+          title: PrimisDocument.active
+          type: boolean
+      required:
+      - name
+      - url
+      - description
+      - retailer
+      - active
+      additionalProperties: false
+      title: PrimisDocument
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

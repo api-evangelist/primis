@@ -1,0 +1,419 @@
+openapi: 3.0.0
+info:
+  title: REST Auth Tracking API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Tracking
+  description: Tracking Context API
+paths:
+  /tracking/page/preview/{campaignId}:
+    get:
+      tags:
+      - Tracking
+      summary: Get the Preview Tracking Context for Tracking Page
+      parameters:
+      - in: header
+        name: Authorization
+        schema:
+          type: string
+        required: true
+        description: The API Key
+      - in: path
+        name: campaignId
+        schema:
+          type: string
+        required: true
+        description: The preview campaign id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                locale:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  campaign:
+                    $ref: '#/components/schemas/Campaign'
+                  variant:
+                    type: object
+                    properties:
+                      locale:
+                        type: string
+                      marketing:
+                        type: object
+                      email:
+                        type: array
+                        items:
+                          type: object
+                      webPage:
+                        type: array
+                        items:
+                          type: object
+                  order:
+                    $ref: '#/components/schemas/Order'
+                  retailer:
+                    $ref: '#/components/schemas/Retailer'
+                  templateText:
+                    type: object
+                  customHtml:
+                    type: string
+        '500':
+          description: Server Error
+components:
+  schemas:
+    Customer:
+      properties:
+        firstName:
+          title: Customer.firstName
+          type: string
+        secondName:
+          title: Customer.secondName
+          type: string
+        email:
+          title: Customer.email
+          type: string
+        phoneCountryCode:
+          title: Customer.phoneCountryCode
+          type: string
+        phoneNumber:
+          title: Customer.phoneNumber
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+          title: Customer.shippingAddress
+      required:
+      - firstName
+      - secondName
+      - email
+      - phoneCountryCode
+      - phoneNumber
+      - shippingAddress
+      additionalProperties: false
+      title: Customer
+      type: object
+    Shipment:
+      properties:
+        id:
+          title: Shipment.id
+          type: string
+        orderId:
+          title: Shipment.orderId
+          type: string
+        trackingCodes:
+          items:
+            title: Shipment.trackingCodes.[]
+            type: string
+          title: Shipment.trackingCodes
+          type: array
+        status:
+          $ref: '#/components/schemas/ShipmentStatus'
+          title: Shipment.status
+        history:
+          items:
+            $ref: '#/components/schemas/ShipmentStatus'
+            title: Shipment.history.[]
+          title: Shipment.history
+          type: array
+        courier:
+          title: Shipment.courier
+          type: string
+        service:
+          title: Shipment.service
+          type: string
+        estimatedDeliveryDate:
+          title: Shipment.estimatedDeliveryDate
+          type: string
+        deliveredDate:
+          anyOf:
+          - title: Shipment.deliveredDate
+            type: string
+          title: Shipment.deliveredDate
+        trackingMethod:
+          type: string
+          enum:
+          - tracking-service
+          - shopify
+          - courier-api
+          - custom
+          title: Shipment.trackingMethod
+        carrierTrackingUrl:
+          title: Shipment.carrierTrackingUrl
+          type: string
+        trackableStatus:
+          type: string
+          enum:
+          - confirmed
+          - pending
+          - no-tracking
+          title: Shipment.trackableStatus
+      required:
+      - orderId
+      - status
+      additionalProperties: false
+      title: Shipment
+      type: object
+    Campaign:
+      properties:
+        id:
+          title: Campaign.id
+          type: string
+        retailerId:
+          title: Campaign.retailerId
+          type: string
+        name:
+          title: Campaign.name
+          type: string
+        description:
+          title: Campaign.description
+          type: string
+        slogan:
+          title: Campaign.slogan
+          type: string
+        variants:
+          type: array
+        productRecommendations:
+          items:
+            title: Campaign.productRecommendations.[]
+            type: string
+          title: Campaign.productRecommendations
+          type: array
+        productRecommendationsEnabled:
+          title: Campaign.productRecommendationsEnabled
+          type: boolean
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - deleted
+          title: Campaign.status
+      additionalProperties: false
+      title: Campaign
+      type: object
+    Address:
+      properties:
+        addressLine1:
+          title: Address.addressLine1
+          type: string
+        addressLine2:
+          title: Address.addressLine2
+          type: string
+        addressLine3:
+          title: Address.addressLine3
+          type: string
+        country:
+          title: Address.country
+          type: string
+        county:
+          title: Address.county
+          type: string
+        city:
+          title: Address.city
+          type: string
+        postalCode:
+          title: Address.postalCode
+          type: string
+      required:
+      - addressLine1
+      - addressLine2
+      - country
+      - city
+      - postalCode
+      additionalProperties: false
+      title: Address
+      type: object
+    Order:
+      properties:
+        id:
+          title: Order.id
+          type: string
+        retailerId:
+          title: Order.retailerId
+          type: string
+        externalOrderId:
+          title: Order.externalOrderId
+          type: string
+        orderNumber:
+          title: Order.orderNumber
+          type: string
+        products:
+          items:
+            $ref: '#/components/schemas/OrderProduct'
+            title: Order.products.[]
+          title: Order.products
+          type: array
+        orderSubtotal:
+          $ref: '#/components/schemas/Price'
+          title: Order.orderSubtotal
+        dateOrdered:
+          type: string
+          title: Order.dateOrdered
+        dateExpectedArrival:
+          type: string
+          title: Order.dateExpectedArrival
+        deliveryCharge:
+          $ref: '#/components/schemas/Price'
+          title: Order.deliveryCharge
+        shipment:
+          $ref: '#/components/schemas/Shipment'
+          title: Order.shipment
+        customer:
+          $ref: '#/components/schemas/Customer'
+          title: Order.customer
+        orderSource:
+          type: string
+          enum:
+          - primis-api
+          - shopify
+          - channel-api
+          title: Order.orderSource
+      additionalProperties: false
+      title: Order
+      type: object
+    RetailerPlatform:
+      properties:
+        provider:
+          type: string
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
+      additionalProperties: false
+      title: RetailerPlatform
+      type: object
+    ShipmentStatus:
+      properties:
+        statusCode:
+          type: string
+          enum:
+          - OC
+          - AC
+          - RW
+          - IT
+          - DE
+          - OH
+          - CA
+          - FA
+          - RC
+          - PR
+          title: ShipmentStatus.statusCode
+        statusDescription:
+          title: ShipmentStatus.statusDescription
+          type: string
+        timestamp:
+          type: string
+          title: ShipmentStatus.timestamp
+      required:
+      - statusCode
+      - timestamp
+      additionalProperties: false
+      title: ShipmentStatus
+      type: object
+    OrderProduct:
+      allOf:
+      - properties:
+          _id:
+            title: _id
+            type: string
+          name:
+            title: name
+            type: string
+          material:
+            title: material
+            type: string
+          quantity:
+            title: quantity
+            type: number
+          price:
+            $ref: '#/components/schemas/Price'
+            title: price
+          productCode:
+            title: productCode
+            type: string
+          description:
+            title: description
+            type: string
+          imageUrl:
+            title: imageUrl
+            type: string
+          colour:
+            title: colour
+            type: string
+        required:
+        - name
+        - quantity
+        - price
+        - productCode
+        - imageUrl
+        - colour
+        additionalProperties: false
+        type: object
+      title: OrderProduct
+    Price:
+      properties:
+        amount:
+          title: Price.amount
+          type: number
+        currency:
+          title: Price.currency
+          type: string
+      required:
+      - amount
+      - currency
+      additionalProperties: false
+      title: Price
+      type: object
+    Retailer:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slogan:
+          type: string
+        faviconUrl:
+          type: string
+        domain:
+          type: string
+        email:
+          type: string
+        live:
+          type: boolean
+        overrideEmail:
+          type: string
+        adminEmail:
+          type: string
+        platform:
+          $ref: '#/components/schemas/RetailerPlatform'
+      required:
+      - name
+      additionalProperties: false
+      title: Retailer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

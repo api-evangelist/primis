@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: REST Auth Billing API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Billing
+  description: Billing API
+paths:
+  /billing/checkout:
+    post:
+      tags:
+      - Billing
+      summary: Create the checkout session. (Not in use right now)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequest'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutResponse'
+        '500':
+          description: Server Error
+  /billing/portal:
+    get:
+      tags:
+      - Billing
+      summary: Create the customer portal session
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutResponse'
+        '500':
+          description: Server Error
+components:
+  schemas:
+    CheckoutResponse:
+      properties:
+        redirectUrl:
+          type: string
+      type: object
+    CheckoutRequest:
+      properties:
+        subscriptionId:
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

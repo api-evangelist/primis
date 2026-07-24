@@ -1,0 +1,311 @@
+openapi: 3.0.0
+info:
+  title: REST Auth User API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: User
+  description: User API
+paths:
+  /users:
+    get:
+      tags:
+      - User
+      summary: Get all the users for the retailer
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Server Error
+  /users/{id}:
+    get:
+      tags:
+      - User
+      summary: Gets the user
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the user
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '500':
+          description: Server Error
+    put:
+      tags:
+      - User
+      summary: Update the user
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '500':
+          description: Server Error
+    delete:
+      tags:
+      - User
+      summary: Delete the user
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '500':
+          description: Server Error
+  /users/verify/resend:
+    get:
+      tags:
+      - User
+      summary: Resend the user verification email
+      parameters:
+      - in: query
+        name: email
+        schema:
+          type: string
+        required: true
+        description: Email requiring a resend
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+  /invitations/{token}:
+    get:
+      tags:
+      - User
+      summary: Get the user invitation
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: The token of the invitation
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  user:
+                    $ref: '#/components/schemas/Invitation'
+        '500':
+          description: Server Error
+  /invitations/resend:
+    get:
+      tags:
+      - User
+      summary: Resend the user invitation email
+      parameters:
+      - in: query
+        name: email
+        schema:
+          type: string
+        required: true
+        description: Email requiring a resend
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+  /invitations/register/{token}:
+    post:
+      tags:
+      - User
+      summary: Register the user (Used for invitations and email verifications)
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: Identifing token of the invite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  access:
+                    $ref: '#/components/schemas/UserFeatureAccess'
+                  jwt:
+                    type: string
+        '500':
+          description: Server Error
+  /auth/reset-password/{token}:
+    post:
+      tags:
+      - User
+      summary: Reset the user's password
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: Reset password token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+  /auth/change-password:
+    post:
+      tags:
+      - User
+      summary: Change the user's password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                currentPassword:
+                  type: string
+                newPassword:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+components:
+  schemas:
+    FeaturePermissions:
+      properties:
+        feature:
+          type: string
+        actions:
+          items:
+            type: string
+          title: FeaturePermissions.actions
+          type: array
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
+      type: object
+    User:
+      properties:
+        id:
+          title: User.id
+          type: string
+        retailer:
+          title: User.retailer
+          type: string
+        name:
+          title: User.name
+          type: string
+        surname:
+          title: User.surname
+          type: string
+        email:
+          title: User.email
+          type: string
+        role:
+          type: string
+          enum:
+          - retail-admin
+          - developer
+          - marketing
+        blocked:
+          title: User.blocked
+          type: boolean
+      required:
+      - email
+      additionalProperties: false
+      title: User
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
+      type: object
+    Invitation:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        token:
+          title: Invitation.token
+          type: string
+        redeemed:
+          title: Invitation.redeemed
+          type: boolean
+        expiration:
+          type: string
+        verification:
+          title: Invitation.verification
+          type: boolean
+      required:
+      - user
+      - token
+      - redeemed
+      - expiration
+      additionalProperties: false
+      title: Invitation
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

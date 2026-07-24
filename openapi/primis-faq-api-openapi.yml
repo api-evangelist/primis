@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: REST Auth FAQ API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: FAQ
+  description: FAQ API
+paths:
+  /faqs:
+    get:
+      tags:
+      - FAQ
+      summary: Get all the faqs
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Faq'
+        '500':
+          description: Server Error
+    post:
+      tags:
+      - FAQ
+      summary: Create new FAQ
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Faq'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Faq'
+        '500':
+          description: Server Error
+  /faqs/{id}:
+    put:
+      tags:
+      - FAQ
+      summary: Update an FAQ
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the faq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Faq'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Faq'
+        '500':
+          description: Server Error
+components:
+  schemas:
+    Faq:
+      properties:
+        question:
+          title: Faq.question
+          type: string
+        answer:
+          title: Faq.answer
+          type: string
+        active:
+          title: Faq.active
+          type: boolean
+      required:
+      - question
+      - answer
+      - active
+      additionalProperties: false
+      title: Faq
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

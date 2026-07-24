@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: REST Auth Index API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Index
+  description: Index API
+paths:
+  /:
+    get:
+      tags:
+      - Index
+      summary: Check if server is running
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server Error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

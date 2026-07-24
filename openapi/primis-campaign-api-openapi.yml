@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: REST Auth Campaign API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Campaign
+  description: Campaign API
+paths:
+  /campaigns:
+    post:
+      tags:
+      - Campaign
+      summary: Create retailer's campaigns
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server Error
+  /campaigns/default:
+    get:
+      tags:
+      - Campaign
+      summary: Get a retailer's default campaign
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '500':
+          description: Server Error
+  /campaigns/{id}:
+    get:
+      tags:
+      - Campaign
+      summary: Get a retailer's campaign
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the campaign
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '500':
+          description: Server Error
+    put:
+      tags:
+      - Campaign
+      summary: Update a retailer's campaign
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the campaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '500':
+          description: Server Error
+  /campaigns/{id}/{imageType}:
+    put:
+      tags:
+      - Campaign
+      summary: Update a retailer's campaign image
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Id of the campaign
+      - in: path
+        name: imageType
+        schema:
+          type: string
+          enum:
+          - logo
+          - banner
+        required: true
+        description: Type of image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '500':
+          description: Server Error
+components:
+  schemas:
+    Campaign:
+      properties:
+        id:
+          title: Campaign.id
+          type: string
+        retailerId:
+          title: Campaign.retailerId
+          type: string
+        name:
+          title: Campaign.name
+          type: string
+        description:
+          title: Campaign.description
+          type: string
+        slogan:
+          title: Campaign.slogan
+          type: string
+        variants:
+          type: array
+        productRecommendations:
+          items:
+            title: Campaign.productRecommendations.[]
+            type: string
+          title: Campaign.productRecommendations
+          type: array
+        productRecommendationsEnabled:
+          title: Campaign.productRecommendationsEnabled
+          type: boolean
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - deleted
+          title: Campaign.status
+      additionalProperties: false
+      title: Campaign
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

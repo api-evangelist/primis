@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: REST Auth API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Auth
+paths:
+  /invitations/register/{token}:
+    post:
+      tags:
+      - Auth
+      summary: Register the user (Used for invitations and email verifications)
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: Identifing token of the invite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  access:
+                    $ref: '#/components/schemas/UserFeatureAccess'
+                  jwt:
+                    type: string
+        '500':
+          description: Server Error
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login the user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  access:
+                    $ref: '#/components/schemas/UserFeatureAccess'
+                  jwt:
+                    type: string
+        '500':
+          description: Server Error
+  /auth/acl:
+    get:
+      tags:
+      - Auth
+      summary: Get user's access control lists
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserFeatureAccess'
+        '500':
+          description: Server Error
+  /auth/forgot-password:
+    post:
+      tags:
+      - Auth
+      summary: Send forgot password email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+  /auth/reset-password/{token}:
+    post:
+      tags:
+      - Auth
+      summary: Reset the user's password
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: Reset password token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+  /auth/change-password:
+    post:
+      tags:
+      - Auth
+      summary: Change the user's password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                currentPassword:
+                  type: string
+                newPassword:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+components:
+  schemas:
+    FeaturePermissions:
+      properties:
+        feature:
+          type: string
+        actions:
+          items:
+            type: string
+          title: FeaturePermissions.actions
+          type: array
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
+      type: object
+    User:
+      properties:
+        id:
+          title: User.id
+          type: string
+        retailer:
+          title: User.retailer
+          type: string
+        name:
+          title: User.name
+          type: string
+        surname:
+          title: User.surname
+          type: string
+        email:
+          title: User.email
+          type: string
+        role:
+          type: string
+          enum:
+          - retail-admin
+          - developer
+          - marketing
+        blocked:
+          title: User.blocked
+          type: boolean
+      required:
+      - email
+      additionalProperties: false
+      title: User
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT

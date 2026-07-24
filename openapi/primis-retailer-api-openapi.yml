@@ -1,0 +1,273 @@
+openapi: 3.0.0
+info:
+  title: REST Auth Retailer API
+  version: 1.1.0
+  description: Primis API docs
+servers:
+- url: https://api.primis.cx
+  description: Production server
+- url: https://api.qa.primis.cx
+  description: QA Server
+tags:
+- name: Retailer
+  description: Retailer API
+paths:
+  /retailers:
+    post:
+      tags:
+      - Retailer
+      summary: Create new retailer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                retailer:
+                  properties:
+                    name:
+                      type: string
+                user:
+                  properties:
+                    name:
+                      title: User.name
+                      type: string
+                    surname:
+                      title: User.surname
+                      type: string
+                    email:
+                      title: User.email
+                      type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  retailer:
+                    $ref: '#/components/schemas/Retailer'
+                  user:
+                    $ref: '#/components/schemas/User'
+        '500':
+          description: Server Error
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Retailer
+      summary: Updates user's retailer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Retailer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retailer'
+        '500':
+          description: Server Error
+  /retailers/live:
+    put:
+      security:
+      - bearerAuth: []
+      tags:
+      - Retailer
+      summary: Set the live flag on a retailer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                live:
+                  type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retailer'
+        '500':
+          description: Server Error
+  /retailers/other:
+    post:
+      tags:
+      - Retailer
+      summary: Sends the retailer's details to an admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                provider:
+                  type: string
+                organization:
+                  type: string
+                number:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Server Error
+  /invitations/register/{token}:
+    post:
+      tags:
+      - Retailer
+      summary: Register the user (Used for invitations and email verifications)
+      parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: Identifing token of the invite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  access:
+                    $ref: '#/components/schemas/UserFeatureAccess'
+                  jwt:
+                    type: string
+        '500':
+          description: Server Error
+components:
+  schemas:
+    FeaturePermissions:
+      properties:
+        feature:
+          type: string
+        actions:
+          items:
+            type: string
+          title: FeaturePermissions.actions
+          type: array
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
+      type: object
+    RetailerPlatform:
+      properties:
+        provider:
+          type: string
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
+      additionalProperties: false
+      title: RetailerPlatform
+      type: object
+    User:
+      properties:
+        id:
+          title: User.id
+          type: string
+        retailer:
+          title: User.retailer
+          type: string
+        name:
+          title: User.name
+          type: string
+        surname:
+          title: User.surname
+          type: string
+        email:
+          title: User.email
+          type: string
+        role:
+          type: string
+          enum:
+          - retail-admin
+          - developer
+          - marketing
+        blocked:
+          title: User.blocked
+          type: boolean
+      required:
+      - email
+      additionalProperties: false
+      title: User
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
+      type: object
+    Retailer:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slogan:
+          type: string
+        faviconUrl:
+          type: string
+        domain:
+          type: string
+        email:
+          type: string
+        live:
+          type: boolean
+        overrideEmail:
+          type: string
+        adminEmail:
+          type: string
+        platform:
+          $ref: '#/components/schemas/RetailerPlatform'
+      required:
+      - name
+      additionalProperties: false
+      title: Retailer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: https
+      scheme: bearer
+      bearerFormat: JWT
