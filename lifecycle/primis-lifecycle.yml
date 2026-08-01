@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/primis-openapi-original.json
+versioning:
+  scheme: none-in-path
+  spec_version: '1.1.0'
+  runtime_version: '2.0.5'
+  runtime_version_endpoint: GET https://api.primis.cx/
+  notes: No version segment in the URL path; the API root returns a JSON build version. The OpenAPI info.version (1.1.0) differs from the runtime version reported at the root (2.0.5).
+environments:
+- name: production
+  base_url: https://api.primis.cx
+- name: qa
+  base_url: https://api.qa.primis.cx
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  notes: No deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  No public status page, roadmap, changelog, or deprecation policy was found for
+  the Primis API as of this pass. Two server environments (production + QA) are
+  declared in the OpenAPI.

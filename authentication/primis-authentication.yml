@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/primis-openapi-original.json
+docs: https://api.primis.cx/api-docs
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+  bearer_format: JWT
+notes: >-
+  The Primis REST API is served over HTTPS and requires an Authentication Token
+  on all requests. The OpenAPI declares a single HTTP bearer scheme
+  (bearerAuth, bearerFormat JWT); the published API docs describe three token
+  types carried in the Authorization header. The spec's securityScheme declares
+  type "https" (a typo for the OpenAPI "http" type) — captured here as the
+  intended http/bearer profile.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/primis-openapi-original.json
+token_types:
+- name: JWT
+  description: Provided on successful login of an account (POST /auth/login). Must be set in the Authorization header prepended with "Bearer ".
+  header: 'Authorization: Bearer <jwt>'
+- name: Retailer API Key
+  description: Provided when adding an API Key to an integration. Sent in the Authorization header WITHOUT the "Bearer " prefix.
+  header: 'Authorization: <retailer-api-key>'
+- name: CMS API Key
+  description: Provided by a Primis Developer upon request; used for communication between Primis services and external services not associated with a specific retailer. Sent WITHOUT the "Bearer " prefix.
+  header: 'Authorization: <cms-api-key>'

@@ -1,0 +1,120 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/primis-openapi-original.json
+summary: >-
+  Entity-relationship graph derived from the Primis OpenAPI component schemas
+  ($ref links and id-reference fields). 27 schemas; core commerce entities are
+  Retailer, User, Order, Shipment, Product, Campaign.
+entities:
+- Retailer
+- RetailerPlatform
+- User
+- Role
+- UserAuth
+- Invitation
+- ShopifyConfig
+- Campaign
+- TrackingPageConfig
+- PrimisDocument
+- Faq
+- Shipment
+- ShipmentStatus
+- Order
+- OrderProduct
+- Customer
+- Address
+- Price
+- Product
+- ProductVariant
+- ProductColor
+- PricedItem
+- AccessControlFeatureSet
+- FeaturePermissions
+- UserFeatureAccess
+- CheckoutRequest
+- CheckoutResponse
+relationships:
+- from: Retailer
+  to: RetailerPlatform
+  kind: has_one
+  via: platform
+- from: Invitation
+  to: User
+  kind: has_one
+  via: user
+- from: ShopifyConfig
+  to: Retailer
+  kind: belongs_to
+  via: retailerId
+- from: Campaign
+  to: Retailer
+  kind: belongs_to
+  via: retailerId
+- from: Shipment
+  to: Order
+  kind: belongs_to
+  via: orderId
+- from: Shipment
+  to: ShipmentStatus
+  kind: has_one
+  via: status
+- from: Shipment
+  to: ShipmentStatus
+  kind: has_many
+  via: history
+- from: Order
+  to: Retailer
+  kind: belongs_to
+  via: retailerId
+- from: Order
+  to: OrderProduct
+  kind: has_many
+  via: products
+- from: Order
+  to: Price
+  kind: has_one
+  via: orderSubtotal
+- from: Order
+  to: Price
+  kind: has_one
+  via: deliveryCharge
+- from: Order
+  to: Shipment
+  kind: has_one
+  via: shipment
+- from: Order
+  to: Customer
+  kind: has_one
+  via: customer
+- from: Customer
+  to: Address
+  kind: has_one
+  via: shippingAddress
+- from: Product
+  to: Retailer
+  kind: belongs_to
+  via: retailerId
+- from: Product
+  to: ProductColor
+  kind: has_many
+  via: colors
+- from: Product
+  to: ProductVariant
+  kind: has_many
+  via: variants
+- from: PricedItem
+  to: Price
+  kind: has_one
+  via: price
+- from: AccessControlFeatureSet
+  to: FeaturePermissions
+  kind: has_many
+  via: featurePermissions
+- from: UserFeatureAccess
+  to: FeaturePermissions
+  kind: has_many
+  via: subscription
+- from: UserFeatureAccess
+  to: FeaturePermissions
+  kind: has_many
+  via: role

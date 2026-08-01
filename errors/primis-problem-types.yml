@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/primis-openapi-original.json
+format: plain
+notes: >-
+  Derived from the OpenAPI response declarations. The Primis spec declares only
+  HTTP 200 ("Ok") success and HTTP 500 ("Server Error") responses across all 42
+  operations; it does NOT use RFC 9457 application/problem+json, and no 4xx
+  error bodies or an error envelope schema are declared. This catalog records
+  what the spec publishes honestly; richer per-error semantics were not found in
+  the api-docs.
+problems:
+- status: 500
+  title: Server Error
+  description: Generic server-side failure. Declared for every operation in the spec; no response body schema is defined.
+  applies_to: all operations
+media_type: none-declared
+gaps:
+- No 4xx client-error responses declared (401/403 auth failures, 404 not-found, 400 validation) despite bearer-token auth and path parameters.
+- No error response body schema / problem+json envelope.

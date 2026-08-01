@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/primis-openapi-original.json
+summary: >-
+  Primis publishes a dedicated QA (test) server alongside production in its
+  OpenAPI servers list. No published test credentials, test cards, or magic test
+  values were found — the QA environment is a separate host that requires real
+  issued tokens (JWT via login, or a Retailer/CMS API key).
+environments:
+- name: production
+  base_url: https://api.primis.cx
+  role: live
+- name: qa
+  base_url: https://api.qa.primis.cx
+  role: test
+test_data:
+  published: false
+  notes: No public test cards / fixtures / magic identifiers documented. Access to QA requires provisioned credentials.

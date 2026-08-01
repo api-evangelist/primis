@@ -1,0 +1,36 @@
+{
+  "provider": "primis",
+  "sources": [
+    "primis-auth-api-openapi.yml",
+    "primis-billing-api-openapi.yml",
+    "primis-campaign-api-openapi.yml",
+    "primis-document-api-openapi.yml",
+    "primis-faq-api-openapi.yml",
+    "primis-index-api-openapi.yml",
+    "primis-invitation-api-openapi.yml",
+    "primis-order-api-openapi.yml",
+    "primis-product-api-openapi.yml",
+    "primis-retailer-api-openapi.yml",
+    "primis-tracking-api-openapi.yml",
+    "primis-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "primis-auth-api-openapi.yml",
+    "primis-billing-api-openapi.yml",
+    "primis-campaign-api-openapi.yml",
+    "primis-document-api-openapi.yml",
+    "primis-faq-api-openapi.yml",
+    "primis-index-api-openapi.yml",
+    "primis-invitation-api-openapi.yml",
+    "primis-order-api-openapi.yml",
+    "primis-product-api-openapi.yml",
+    "primis-retailer-api-openapi.yml",
+    "primis-tracking-api-openapi.yml",
+    "primis-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

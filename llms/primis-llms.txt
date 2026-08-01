@@ -1,0 +1,29 @@
+# Primis
+
+> Primis is a post-purchase customer experience platform for eCommerce businesses, providing branded order tracking, discounted shipping, streamlined returns, and cross-border international logistics. The Primis REST API (OpenAPI 3.0.0) exposes retailer, order, shipment, product, campaign, billing, user, and tracking-page resources over HTTPS with bearer-token authentication.
+
+## APIs
+- [Primis REST API](https://api.primis.cx): Production REST API base URL (JSON over HTTPS, bearer-token auth)
+- [Primis API docs (Swagger UI)](https://api.primis.cx/api-docs): Interactive OpenAPI reference
+- [QA server](https://api.qa.primis.cx): Test environment
+
+## Specs
+- [OpenAPI 3.0.0](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/openapi/primis-openapi-original.json): 42 operations across 12 tags (Authentication, Billing, Retailer, User, Campaign, Order, Shipment, Product, FAQ, Document, Index, Tracking)
+
+## Authentication
+- Bearer token in the Authorization header. Three token types: JWT (from POST /auth/login, sent as `Bearer <jwt>`), Retailer API Key, and CMS API Key (both sent without the `Bearer` prefix).
+
+## Artifacts
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/authentication/primis-authentication.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/conventions/primis-conventions.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/data-model/primis-data-model.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/errors/primis-problem-types.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/lifecycle/primis-lifecycle.yml)
+- [MCP candidate tools](https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/mcp/primis-mcp.yml)
+
+## Docs
+- [Primis website](https://primis.cx)
+- [Integrations](https://primis.cx/integrations/): Shopify, BigCommerce, Magento/Adobe Commerce, WooCommerce, Brightpearl, plus carriers (DPD, DHL, USPS, Evri, UPS, FedEx)
+- [Pricing](https://primis.cx/pricing/)
+- [Retailer login](https://retailer.primis.cx)
+- [Contact](https://primis.cx/contact-us/)

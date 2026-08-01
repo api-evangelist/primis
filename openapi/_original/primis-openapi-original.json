@@ -1,0 +1,2610 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "REST API",
+    "version": "1.1.0",
+    "description": "Primis API docs"
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "The Primis REST API is served over HTTPS.\n\nIt has predictable resource-oriented URLs, accepts application/json request bodies, returns application/json responses, and uses standard HTTP response codes, authentication, and verbs.\n\nAn Authentication Token is required to authorise all API requests.\n\nThere are 3 token types: JWT, Retailer API Key and CMS API key. <br>\nJWT: Provided on successful login of an account.<br>\nRetailer API key: Provided when adding an API Key to an integration<br>\nCMS API Key: Provided by a Primis Developer upon request<br> CMS API Key are used to communicate between Primis services and external services that are not associated with specific retailers\n\nFor CMS and Retailer API Keys \"Bearer is not required in the Header<br>\nFor JWT requests: It must be set in the Authorization header of the API Request prepended with Bearer.<br> E.g. Bearer The-JWT-Token<br>\n"
+    },
+    {
+      "name": "Billing",
+      "description": "Billing API"
+    },
+    {
+      "name": "Retailer",
+      "description": "Retailer API"
+    },
+    {
+      "name": "User",
+      "description": "User API"
+    },
+    {
+      "name": "Campaign",
+      "description": "Campaign API"
+    },
+    {
+      "name": "Order",
+      "description": "Order API"
+    },
+    {
+      "name": "Shipment",
+      "description": "Shipment API"
+    },
+    {
+      "name": "Product",
+      "description": "Product API"
+    },
+    {
+      "name": "FAQ",
+      "description": "FAQ API"
+    },
+    {
+      "name": "Document",
+      "description": "Documents API"
+    },
+    {
+      "name": "Index",
+      "description": "Index API"
+    },
+    {
+      "name": "Tracking",
+      "description": "Tracking Context API"
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://api.primis.cx",
+      "description": "Production server"
+    },
+    {
+      "url": "https://api.qa.primis.cx",
+      "description": "QA Server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Index"
+        ],
+        "summary": "Check if server is running",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Create new order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/orders/{orderId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get order",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the order"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Update order (not implemented yet)",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the order"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/orders/retailer": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Gets all orders for a retailer paginated",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Page number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Max per page"
+          },
+          {
+            "in": "query",
+            "name": "toDateOrdered",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Max date"
+          },
+          {
+            "in": "query",
+            "name": "fromDateOrdered",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Min date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Order"
+                      }
+                    },
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/export": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Gets all orders for a retailer",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "toDate",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Max date"
+          },
+          {
+            "in": "query",
+            "name": "fromDate",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Min date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Order"
+                      }
+                    },
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/billing/checkout": {
+      "post": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Create the checkout session. (Not in use right now)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/billing/portal": {
+      "get": {
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Create the customer portal session",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Create new product",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the product"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Update a product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the product"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Delete product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the product"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/products/image": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "Get product",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the product"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/retailers": {
+      "post": {
+        "tags": [
+          "Retailer"
+        ],
+        "summary": "Create new retailer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "retailer": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "user": {
+                    "properties": {
+                      "name": {
+                        "title": "User.name",
+                        "type": "string"
+                      },
+                      "surname": {
+                        "title": "User.surname",
+                        "type": "string"
+                      },
+                      "email": {
+                        "title": "User.email",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "retailer": {
+                      "$ref": "#/components/schemas/Retailer"
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Retailer"
+        ],
+        "summary": "Updates user's retailer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Retailer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Retailer"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/retailers/live": {
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Retailer"
+        ],
+        "summary": "Set the live flag on a retailer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "live": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Retailer"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/retailers/other": {
+      "post": {
+        "tags": [
+          "Retailer"
+        ],
+        "summary": "Sends the retailer's details to an admin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "surname": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string"
+                  },
+                  "organization": {
+                    "type": "string"
+                  },
+                  "number": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/campaigns": {
+      "post": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Create retailer's campaigns",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/campaigns/default": {
+      "get": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Get a retailer's default campaign",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/campaigns/{id}": {
+      "get": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Get a retailer's campaign",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the campaign"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Update a retailer's campaign",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the campaign"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Campaign"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/campaigns/{id}/{imageType}": {
+      "put": {
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Update a retailer's campaign image",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the campaign"
+          },
+          {
+            "in": "path",
+            "name": "imageType",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "logo",
+                "banner"
+              ]
+            },
+            "required": true,
+            "description": "Type of image"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Campaign"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all the users for the retailer",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets the user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update the user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the user"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete the user",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/users/verify/resend": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Resend the user verification email",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Email requiring a resend"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/invitations/{token}": {
+      "get": {
+        "tags": [
+          "User",
+          "Invitation"
+        ],
+        "summary": "Get the user invitation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The token of the invitation"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/Invitation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/invitations/resend": {
+      "get": {
+        "tags": [
+          "User",
+          "Invitation"
+        ],
+        "summary": "Resend the user invitation email",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Email requiring a resend"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/invitations/register/{token}": {
+      "post": {
+        "tags": [
+          "Auth",
+          "Retailer",
+          "User",
+          "Invitation"
+        ],
+        "summary": "Register the user (Used for invitations and email verifications)",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Identifing token of the invite"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "access": {
+                      "$ref": "#/components/schemas/UserFeatureAccess"
+                    },
+                    "jwt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login the user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "access": {
+                      "$ref": "#/components/schemas/UserFeatureAccess"
+                    },
+                    "jwt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/auth/acl": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get user's access control lists",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserFeatureAccess"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Send forgot password email",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/auth/reset-password/{token}": {
+      "post": {
+        "tags": [
+          "Auth",
+          "User"
+        ],
+        "summary": "Reset the user's password",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Reset password token"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/tracking/page/preview/{campaignId}": {
+      "get": {
+        "tags": [
+          "Tracking"
+        ],
+        "summary": "Get the Preview Tracking Context for Tracking Page",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The API Key"
+          },
+          {
+            "in": "path",
+            "name": "campaignId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The preview campaign id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "locale": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "campaign": {
+                      "$ref": "#/components/schemas/Campaign"
+                    },
+                    "variant": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string"
+                        },
+                        "marketing": {
+                          "type": "object"
+                        },
+                        "email": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "webPage": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    },
+                    "order": {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    "retailer": {
+                      "$ref": "#/components/schemas/Retailer"
+                    },
+                    "templateText": {
+                      "type": "object"
+                    },
+                    "customHtml": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/auth/change-password": {
+      "post": {
+        "tags": [
+          "Auth",
+          "User"
+        ],
+        "summary": "Change the user's password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "currentPassword": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/faqs": {
+      "get": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Get all the faqs",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Faq"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Create new FAQ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/faqs/{id}": {
+      "put": {
+        "tags": [
+          "FAQ"
+        ],
+        "summary": "Update an FAQ",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the faq"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/documents": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Get all the documents for a retailer",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PrimisDocument"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Create new document",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrimisDocument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrimisDocument"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/documents/{id}": {
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Update a document",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Id of the document"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrimisDocument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrimisDocument"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "https",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Retailer": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slogan": {
+            "type": "string"
+          },
+          "faviconUrl": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "live": {
+            "type": "boolean"
+          },
+          "overrideEmail": {
+            "type": "string"
+          },
+          "adminEmail": {
+            "type": "string"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/RetailerPlatform"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "title": "Retailer",
+        "type": "object"
+      },
+      "RetailerPlatform": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "shopify",
+              "magento",
+              "woocommerce",
+              "other"
+            ]
+          },
+          "setupStatus": {
+            "enum": [
+              "store-selection",
+              "setup-guide-option",
+              "setup-guide-skip",
+              "setup-guide-start",
+              "setup-complete"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "title": "RetailerPlatform",
+        "type": "object"
+      },
+      "User": {
+        "properties": {
+          "id": {
+            "title": "User.id",
+            "type": "string"
+          },
+          "retailer": {
+            "title": "User.retailer",
+            "type": "string"
+          },
+          "name": {
+            "title": "User.name",
+            "type": "string"
+          },
+          "surname": {
+            "title": "User.surname",
+            "type": "string"
+          },
+          "email": {
+            "title": "User.email",
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "retail-admin",
+              "developer",
+              "marketing"
+            ]
+          },
+          "blocked": {
+            "title": "User.blocked",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "additionalProperties": false,
+        "title": "User",
+        "type": "object"
+      },
+      "Role": {
+        "properties": {
+          "_id": {
+            "title": "Role._id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Role.name",
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "retail-admin",
+              "developer",
+              "marketing"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ],
+        "additionalProperties": false,
+        "title": "Role",
+        "type": "object"
+      },
+      "UserAuth": {
+        "properties": {
+          "id": {
+            "title": "UserAuth.id",
+            "type": "string"
+          },
+          "_id": {
+            "title": "UserAuth._id",
+            "type": "string"
+          },
+          "email": {
+            "title": "UserAuth.email",
+            "type": "string"
+          },
+          "user": {
+            "anyOf": [
+              {
+                "title": "UserAuth.user",
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "UserAuth.user"
+          },
+          "passwordHash": {
+            "title": "UserAuth.passwordHash",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "user",
+          "passwordHash"
+        ],
+        "additionalProperties": false,
+        "title": "UserAuth",
+        "type": "object"
+      },
+      "Invitation": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "token": {
+            "title": "Invitation.token",
+            "type": "string"
+          },
+          "redeemed": {
+            "title": "Invitation.redeemed",
+            "type": "boolean"
+          },
+          "expiration": {
+            "type": "string"
+          },
+          "verification": {
+            "title": "Invitation.verification",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "user",
+          "token",
+          "redeemed",
+          "expiration"
+        ],
+        "additionalProperties": false,
+        "title": "Invitation",
+        "type": "object"
+      },
+      "ShopifyConfig": {
+        "properties": {
+          "retailerId": {
+            "title": "ShopifyConfig.retailerId",
+            "type": "string"
+          },
+          "currency": {
+            "title": "ShopifyConfig.currency",
+            "type": "string"
+          },
+          "shopifyDomain": {
+            "title": "ShopifyConfig.shopifyDomain",
+            "type": "string"
+          },
+          "websiteDomain": {
+            "title": "ShopifyConfig.websiteDomain",
+            "type": "string"
+          },
+          "secretKey": {
+            "title": "ShopifyConfig.secretKey",
+            "type": "string"
+          },
+          "accessToken": {
+            "title": "ShopifyConfig.accessToken",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "title": "ShopifyConfig",
+        "type": "object"
+      },
+      "Campaign": {
+        "properties": {
+          "id": {
+            "title": "Campaign.id",
+            "type": "string"
+          },
+          "retailerId": {
+            "title": "Campaign.retailerId",
+            "type": "string"
+          },
+          "name": {
+            "title": "Campaign.name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Campaign.description",
+            "type": "string"
+          },
+          "slogan": {
+            "title": "Campaign.slogan",
+            "type": "string"
+          },
+          "variants": {
+            "type": "array"
+          },
+          "productRecommendations": {
+            "items": {
+              "title": "Campaign.productRecommendations.[]",
+              "type": "string"
+            },
+            "title": "Campaign.productRecommendations",
+            "type": "array"
+          },
+          "productRecommendationsEnabled": {
+            "title": "Campaign.productRecommendationsEnabled",
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "deleted"
+            ],
+            "title": "Campaign.status"
+          }
+        },
+        "additionalProperties": false,
+        "title": "Campaign",
+        "type": "object"
+      },
+      "TrackingPageConfig": {
+        "properties": {
+          "name": {
+            "title": "TrackingPageConfig.name",
+            "type": "string"
+          },
+          "banner": {
+            "title": "TrackingPageConfig.banner",
+            "type": "string"
+          },
+          "logo": {
+            "title": "TrackingPageConfig.logo",
+            "type": "string"
+          },
+          "primaryColour": {
+            "title": "TrackingPageConfig.primaryColour",
+            "type": "string"
+          },
+          "secondaryColour": {
+            "title": "TrackingPageConfig.secondaryColour",
+            "type": "string"
+          },
+          "colour3": {
+            "title": "TrackingPageConfig.colour3",
+            "type": "string"
+          },
+          "colour4": {
+            "title": "TrackingPageConfig.colour4",
+            "type": "string"
+          },
+          "header": {
+            "title": "TrackingPageConfig.header",
+            "type": "string"
+          },
+          "bodyPrimary": {
+            "title": "TrackingPageConfig.bodyPrimary",
+            "type": "string"
+          },
+          "bodySecondary": {
+            "title": "TrackingPageConfig.bodySecondary",
+            "type": "string"
+          },
+          "hyperlink": {
+            "title": "TrackingPageConfig.hyperlink",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "title": "TrackingPageConfig",
+        "type": "object"
+      },
+      "PrimisDocument": {
+        "properties": {
+          "name": {
+            "title": "PrimisDocument.name",
+            "type": "string"
+          },
+          "url": {
+            "title": "PrimisDocument.url",
+            "type": "string"
+          },
+          "description": {
+            "title": "PrimisDocument.description",
+            "type": "string"
+          },
+          "retailer": {
+            "title": "PrimisDocument.retailer",
+            "type": "string"
+          },
+          "active": {
+            "title": "PrimisDocument.active",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "url",
+          "description",
+          "retailer",
+          "active"
+        ],
+        "additionalProperties": false,
+        "title": "PrimisDocument",
+        "type": "object"
+      },
+      "Faq": {
+        "properties": {
+          "question": {
+            "title": "Faq.question",
+            "type": "string"
+          },
+          "answer": {
+            "title": "Faq.answer",
+            "type": "string"
+          },
+          "active": {
+            "title": "Faq.active",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "question",
+          "answer",
+          "active"
+        ],
+        "additionalProperties": false,
+        "title": "Faq",
+        "type": "object"
+      },
+      "Shipment": {
+        "properties": {
+          "id": {
+            "title": "Shipment.id",
+            "type": "string"
+          },
+          "orderId": {
+            "title": "Shipment.orderId",
+            "type": "string"
+          },
+          "trackingCodes": {
+            "items": {
+              "title": "Shipment.trackingCodes.[]",
+              "type": "string"
+            },
+            "title": "Shipment.trackingCodes",
+            "type": "array"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ShipmentStatus",
+            "title": "Shipment.status"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/ShipmentStatus",
+              "title": "Shipment.history.[]"
+            },
+            "title": "Shipment.history",
+            "type": "array"
+          },
+          "courier": {
+            "title": "Shipment.courier",
+            "type": "string"
+          },
+          "service": {
+            "title": "Shipment.service",
+            "type": "string"
+          },
+          "estimatedDeliveryDate": {
+            "title": "Shipment.estimatedDeliveryDate",
+            "type": "string"
+          },
+          "deliveredDate": {
+            "anyOf": [
+              {
+                "title": "Shipment.deliveredDate",
+                "type": "string"
+              }
+            ],
+            "title": "Shipment.deliveredDate"
+          },
+          "trackingMethod": {
+            "type": "string",
+            "enum": [
+              "tracking-service",
+              "shopify",
+              "courier-api",
+              "custom"
+            ],
+            "title": "Shipment.trackingMethod"
+          },
+          "carrierTrackingUrl": {
+            "title": "Shipment.carrierTrackingUrl",
+            "type": "string"
+          },
+          "trackableStatus": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "pending",
+              "no-tracking"
+            ],
+            "title": "Shipment.trackableStatus"
+          }
+        },
+        "required": [
+          "orderId",
+          "status"
+        ],
+        "additionalProperties": false,
+        "title": "Shipment",
+        "type": "object"
+      },
+      "ShipmentStatus": {
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "OC",
+              "AC",
+              "RW",
+              "IT",
+              "DE",
+              "OH",
+              "CA",
+              "FA",
+              "RC",
+              "PR"
+            ],
+            "title": "ShipmentStatus.statusCode"
+          },
+          "statusDescription": {
+            "title": "ShipmentStatus.statusDescription",
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "ShipmentStatus.timestamp"
+          }
+        },
+        "required": [
+          "statusCode",
+          "timestamp"
+        ],
+        "additionalProperties": false,
+        "title": "ShipmentStatus",
+        "type": "object"
+      },
+      "Order": {
+        "properties": {
+          "id": {
+            "title": "Order.id",
+            "type": "string"
+          },
+          "retailerId": {
+            "title": "Order.retailerId",
+            "type": "string"
+          },
+          "externalOrderId": {
+            "title": "Order.externalOrderId",
+            "type": "string"
+          },
+          "orderNumber": {
+            "title": "Order.orderNumber",
+            "type": "string"
+          },
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/OrderProduct",
+              "title": "Order.products.[]"
+            },
+            "title": "Order.products",
+            "type": "array"
+          },
+          "orderSubtotal": {
+            "$ref": "#/components/schemas/Price",
+            "title": "Order.orderSubtotal"
+          },
+          "dateOrdered": {
+            "type": "string",
+            "title": "Order.dateOrdered"
+          },
+          "dateExpectedArrival": {
+            "type": "string",
+            "title": "Order.dateExpectedArrival"
+          },
+          "deliveryCharge": {
+            "$ref": "#/components/schemas/Price",
+            "title": "Order.deliveryCharge"
+          },
+          "shipment": {
+            "$ref": "#/components/schemas/Shipment",
+            "title": "Order.shipment"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/Customer",
+            "title": "Order.customer"
+          },
+          "orderSource": {
+            "type": "string",
+            "enum": [
+              "primis-api",
+              "shopify",
+              "channel-api"
+            ],
+            "title": "Order.orderSource"
+          }
+        },
+        "additionalProperties": false,
+        "title": "Order",
+        "type": "object"
+      },
+      "OrderProduct": {
+        "allOf": [
+          {
+            "properties": {
+              "_id": {
+                "title": "_id",
+                "type": "string"
+              },
+              "name": {
+                "title": "name",
+                "type": "string"
+              },
+              "material": {
+                "title": "material",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "quantity",
+                "type": "number"
+              },
+              "price": {
+                "$ref": "#/components/schemas/Price",
+                "title": "price"
+              },
+              "productCode": {
+                "title": "productCode",
+                "type": "string"
+              },
+              "description": {
+                "title": "description",
+                "type": "string"
+              },
+              "imageUrl": {
+                "title": "imageUrl",
+                "type": "string"
+              },
+              "colour": {
+                "title": "colour",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "quantity",
+              "price",
+              "productCode",
+              "imageUrl",
+              "colour"
+            ],
+            "additionalProperties": false,
+            "type": "object"
+          }
+        ],
+        "title": "OrderProduct"
+      },
+      "Customer": {
+        "properties": {
+          "firstName": {
+            "title": "Customer.firstName",
+            "type": "string"
+          },
+          "secondName": {
+            "title": "Customer.secondName",
+            "type": "string"
+          },
+          "email": {
+            "title": "Customer.email",
+            "type": "string"
+          },
+          "phoneCountryCode": {
+            "title": "Customer.phoneCountryCode",
+            "type": "string"
+          },
+          "phoneNumber": {
+            "title": "Customer.phoneNumber",
+            "type": "string"
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/Address",
+            "title": "Customer.shippingAddress"
+          }
+        },
+        "required": [
+          "firstName",
+          "secondName",
+          "email",
+          "phoneCountryCode",
+          "phoneNumber",
+          "shippingAddress"
+        ],
+        "additionalProperties": false,
+        "title": "Customer",
+        "type": "object"
+      },
+      "Address": {
+        "properties": {
+          "addressLine1": {
+            "title": "Address.addressLine1",
+            "type": "string"
+          },
+          "addressLine2": {
+            "title": "Address.addressLine2",
+            "type": "string"
+          },
+          "addressLine3": {
+            "title": "Address.addressLine3",
+            "type": "string"
+          },
+          "country": {
+            "title": "Address.country",
+            "type": "string"
+          },
+          "county": {
+            "title": "Address.county",
+            "type": "string"
+          },
+          "city": {
+            "title": "Address.city",
+            "type": "string"
+          },
+          "postalCode": {
+            "title": "Address.postalCode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "addressLine1",
+          "addressLine2",
+          "country",
+          "city",
+          "postalCode"
+        ],
+        "additionalProperties": false,
+        "title": "Address",
+        "type": "object"
+      },
+      "Price": {
+        "properties": {
+          "amount": {
+            "title": "Price.amount",
+            "type": "number"
+          },
+          "currency": {
+            "title": "Price.currency",
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "currency"
+        ],
+        "additionalProperties": false,
+        "title": "Price",
+        "type": "object"
+      },
+      "Product": {
+        "properties": {
+          "_id": {
+            "title": "Product._id",
+            "type": "string"
+          },
+          "retailerId": {
+            "title": "Product.retailerId",
+            "type": "string"
+          },
+          "externalProductId": {
+            "title": "Product.externalProductId",
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "published",
+              "deleted"
+            ],
+            "title": "Product.status"
+          },
+          "name": {
+            "title": "Product.name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Product.description",
+            "type": "string"
+          },
+          "imageUrl": {
+            "title": "Product.imageUrl",
+            "type": "string"
+          },
+          "colors": {
+            "items": {
+              "$ref": "#/components/schemas/ProductColor",
+              "title": "Product.colors.[]"
+            },
+            "title": "Product.colors",
+            "type": "array"
+          },
+          "hyperlink": {
+            "title": "Product.hyperlink",
+            "type": "string"
+          },
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/ProductVariant",
+              "title": "Product.variants.[]"
+            },
+            "title": "Product.variants",
+            "type": "array"
+          }
+        },
+        "required": [
+          "retailerId",
+          "status",
+          "name",
+          "imageUrl",
+          "hyperlink"
+        ],
+        "additionalProperties": false,
+        "title": "Product",
+        "type": "object"
+      },
+      "ProductVariant": {
+        "properties": {
+          "id": {
+            "title": "ProductVariant.id",
+            "type": "string"
+          },
+          "imageUrl": {
+            "title": "ProductVariant.imageUrl",
+            "type": "string"
+          },
+          "title": {
+            "title": "ProductVariant.title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "imageUrl",
+          "title"
+        ],
+        "additionalProperties": false,
+        "title": "ProductVariant",
+        "type": "object"
+      },
+      "ProductColor": {
+        "properties": {
+          "name": {
+            "title": "ProductColor.name",
+            "type": "string"
+          },
+          "value": {
+            "title": "ProductColor.value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ],
+        "additionalProperties": false,
+        "title": "ProductColor",
+        "type": "object"
+      },
+      "PricedItem": {
+        "properties": {
+          "price": {
+            "$ref": "#/components/schemas/Price",
+            "title": "PricedItem.price"
+          }
+        },
+        "required": [
+          "price"
+        ],
+        "additionalProperties": false,
+        "title": "PricedItem",
+        "type": "object"
+      },
+      "AccessControlFeatureSet": {
+        "properties": {
+          "_id": {
+            "title": "AccessControlFeatureSet._id",
+            "type": "string"
+          },
+          "id": {
+            "title": "AccessControlFeatureSet.id",
+            "type": "string"
+          },
+          "key": {
+            "title": "AccessControlFeatureSet.key",
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "subscription",
+              "role"
+            ],
+            "title": "AccessControlFeatureSet.type"
+          },
+          "featurePermissions": {
+            "items": {
+              "$ref": "#/components/schemas/FeaturePermissions",
+              "title": "AccessControlFeatureSet.featurePermissions.[]"
+            },
+            "title": "AccessControlFeatureSet.featurePermissions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "key",
+          "type",
+          "featurePermissions"
+        ],
+        "additionalProperties": false,
+        "title": "AccessControlFeatureSet",
+        "type": "object"
+      },
+      "FeaturePermissions": {
+        "properties": {
+          "feature": {
+            "type": "string"
+          },
+          "actions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "FeaturePermissions.actions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "feature",
+          "actions"
+        ],
+        "additionalProperties": false,
+        "title": "FeaturePermissions",
+        "type": "object"
+      },
+      "UserFeatureAccess": {
+        "properties": {
+          "subscription": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeaturePermissions"
+            }
+          },
+          "role": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeaturePermissions"
+            }
+          }
+        },
+        "title": "UserFeatureAccess",
+        "type": "object"
+      },
+      "CheckoutRequest": {
+        "properties": {
+          "subscriptionId": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CheckoutResponse": {
+        "properties": {
+          "redirectUrl": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}

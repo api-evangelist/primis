@@ -1,0 +1,182 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/primis-openapi-original.json
+notes: >-
+  No official hosted/remote Primis MCP server was found. This is a CANDIDATE tool
+  list derived one-per-operation from the Primis OpenAPI so an MCP server can be
+  generated. The spec declares no operationIds; tool names are synthesized from
+  the HTTP method and path.
+server:
+  name: primis
+  transport: http
+  url: null
+tools:
+- name: get_
+  description: "Check if server is running"
+  tag: Index
+  source_operation: "openapi/primis-openapi-original.json#GET /"
+- name: create_orders
+  description: "Create new order"
+  tag: Order
+  source_operation: "openapi/primis-openapi-original.json#POST /orders"
+- name: get_orders_orderId
+  description: "Get order"
+  tag: Order
+  source_operation: "openapi/primis-openapi-original.json#GET /orders/{orderId}"
+- name: create_orders_orderId
+  description: "Update order (not implemented yet)"
+  tag: Order
+  source_operation: "openapi/primis-openapi-original.json#POST /orders/{orderId}"
+- name: get_orders_retailer
+  description: "Gets all orders for a retailer paginated"
+  tag: Order
+  source_operation: "openapi/primis-openapi-original.json#GET /orders/retailer"
+- name: get_orders_export
+  description: "Gets all orders for a retailer"
+  tag: Order
+  source_operation: "openapi/primis-openapi-original.json#GET /orders/export"
+- name: create_billing_checkout
+  description: "Create the checkout session. (Not in use right now)"
+  tag: Billing
+  source_operation: "openapi/primis-openapi-original.json#POST /billing/checkout"
+- name: get_billing_portal
+  description: "Create the customer portal session"
+  tag: Billing
+  source_operation: "openapi/primis-openapi-original.json#GET /billing/portal"
+- name: create_products
+  description: "Create new product"
+  tag: Product
+  source_operation: "openapi/primis-openapi-original.json#POST /products"
+- name: get_products_id
+  description: "Get product"
+  tag: Product
+  source_operation: "openapi/primis-openapi-original.json#GET /products/{id}"
+- name: update_products_id
+  description: "Update a product"
+  tag: Product
+  source_operation: "openapi/primis-openapi-original.json#PUT /products/{id}"
+- name: delete_products_id
+  description: "Delete product"
+  tag: Product
+  source_operation: "openapi/primis-openapi-original.json#DELETE /products/{id}"
+- name: update_products_image
+  description: "Get product"
+  tag: Product
+  source_operation: "openapi/primis-openapi-original.json#PUT /products/image"
+- name: create_retailers
+  description: "Create new retailer"
+  tag: Retailer
+  source_operation: "openapi/primis-openapi-original.json#POST /retailers"
+- name: update_retailers
+  description: "Updates user's retailer"
+  tag: Retailer
+  source_operation: "openapi/primis-openapi-original.json#PUT /retailers"
+- name: update_retailers_live
+  description: "Set the live flag on a retailer"
+  tag: Retailer
+  source_operation: "openapi/primis-openapi-original.json#PUT /retailers/live"
+- name: create_retailers_other
+  description: "Sends the retailer's details to an admin"
+  tag: Retailer
+  source_operation: "openapi/primis-openapi-original.json#POST /retailers/other"
+- name: create_campaigns
+  description: "Create retailer's campaigns"
+  tag: Campaign
+  source_operation: "openapi/primis-openapi-original.json#POST /campaigns"
+- name: get_campaigns_default
+  description: "Get a retailer's default campaign"
+  tag: Campaign
+  source_operation: "openapi/primis-openapi-original.json#GET /campaigns/default"
+- name: get_campaigns_id
+  description: "Get a retailer's campaign"
+  tag: Campaign
+  source_operation: "openapi/primis-openapi-original.json#GET /campaigns/{id}"
+- name: update_campaigns_id
+  description: "Update a retailer's campaign"
+  tag: Campaign
+  source_operation: "openapi/primis-openapi-original.json#PUT /campaigns/{id}"
+- name: update_campaigns_id_imageType
+  description: "Update a retailer's campaign image"
+  tag: Campaign
+  source_operation: "openapi/primis-openapi-original.json#PUT /campaigns/{id}/{imageType}"
+- name: get_users
+  description: "Get all the users for the retailer"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#GET /users"
+- name: get_users_id
+  description: "Gets the user"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#GET /users/{id}"
+- name: update_users_id
+  description: "Update the user"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#PUT /users/{id}"
+- name: delete_users_id
+  description: "Delete the user"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#DELETE /users/{id}"
+- name: get_users_verify_resend
+  description: "Resend the user verification email"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#GET /users/verify/resend"
+- name: get_invitations_token
+  description: "Get the user invitation"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#GET /invitations/{token}"
+- name: get_invitations_resend
+  description: "Resend the user invitation email"
+  tag: User
+  source_operation: "openapi/primis-openapi-original.json#GET /invitations/resend"
+- name: create_invitations_register_token
+  description: "Register the user (Used for invitations and email verifications)"
+  tag: Auth
+  source_operation: "openapi/primis-openapi-original.json#POST /invitations/register/{token}"
+- name: create_auth_login
+  description: "Login the user"
+  tag: Auth
+  source_operation: "openapi/primis-openapi-original.json#POST /auth/login"
+- name: get_auth_acl
+  description: "Get user's access control lists"
+  tag: Auth
+  source_operation: "openapi/primis-openapi-original.json#GET /auth/acl"
+- name: create_auth_forgot_password
+  description: "Send forgot password email"
+  tag: Auth
+  source_operation: "openapi/primis-openapi-original.json#POST /auth/forgot-password"
+- name: create_auth_reset_password_token
+  description: "Reset the user's password"
+  tag: Auth
+  source_operation: "openapi/primis-openapi-original.json#POST /auth/reset-password/{token}"
+- name: get_tracking_page_preview_campaignId
+  description: "Get the Preview Tracking Context for Tracking Page"
+  tag: Tracking
+  source_operation: "openapi/primis-openapi-original.json#GET /tracking/page/preview/{campaignId}"
+- name: create_auth_change_password
+  description: "Change the user's password"
+  tag: Auth
+  source_operation: "openapi/primis-openapi-original.json#POST /auth/change-password"
+- name: get_faqs
+  description: "Get all the faqs"
+  tag: FAQ
+  source_operation: "openapi/primis-openapi-original.json#GET /faqs"
+- name: create_faqs
+  description: "Create new FAQ"
+  tag: FAQ
+  source_operation: "openapi/primis-openapi-original.json#POST /faqs"
+- name: update_faqs_id
+  description: "Update an FAQ"
+  tag: FAQ
+  source_operation: "openapi/primis-openapi-original.json#PUT /faqs/{id}"
+- name: get_documents
+  description: "Get all the documents for a retailer"
+  tag: Document
+  source_operation: "openapi/primis-openapi-original.json#GET /documents"
+- name: create_documents
+  description: "Create new document"
+  tag: Document
+  source_operation: "openapi/primis-openapi-original.json#POST /documents"
+- name: update_documents_id
+  description: "Update a document"
+  tag: Document
+  source_operation: "openapi/primis-openapi-original.json#PUT /documents/{id}"

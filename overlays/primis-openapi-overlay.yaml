@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Primis REST API
+  version: 1.0.0
+extends: openapi/primis-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: primis
+    x-apievangelist-industry: [eCommerce, Logistics, Post-Purchase CX]
+    x-apievangelist-notes: >-
+      Post-purchase customer-experience platform (tracking, shipping, returns)
+      for eCommerce. OpenAPI harvested from the live Swagger UI at
+      https://api.primis.cx/api-docs.
+- target: $.servers
+  update:
+    x-apievangelist-environments:
+      production: https://api.primis.cx
+      qa: https://api.qa.primis.cx
+- target: $.components.securitySchemes.bearerAuth
+  description: The spec declares type "https" which is invalid OpenAPI; the intended type is "http" (scheme bearer, bearerFormat JWT).
+  update:
+    x-apievangelist-corrected-type: http
+- target: $.paths
+  description: Enhancement backlog surfaced by the enrichment pipeline for a follow-up with the provider.
+  update:
+    x-apievangelist-gaps:
+    - Operations declare no operationId (all 42) — blocks stable tooling, MCP, and agent-skill grounding.
+    - Only 200 and 500 responses declared; add 4xx (400/401/403/404) with an error body schema.
+    - No RFC 9457 problem+json error envelope.
+    - No idempotency, no documented rate limiting, no deprecation/Sunset policy.

@@ -1,25 +1,375 @@
 aid: primis
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/primis.png
 name: PRIMIS
-description: PRIMIS is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Primis (Primis CX) is a post-purchase customer experience platform for
+  eCommerce retailers, headquartered in the UK and backed by 500 Global. Its
+  products — Primis Track (branded order tracking), Primis Ship (discounted
+  multi-carrier shipping), Primis Returns (label-less returns processing), and
+  Primis International (cross-border logistics across 120+ carriers) — reduce
+  "where is my order?" support volume and drive repeat purchases. Primis exposes
+  a REST API (OpenAPI 3.0.0, 42 operations) over HTTPS with bearer-token
+  authentication, covering retailers, orders, shipments, products, campaigns,
+  billing, users, tracking pages, FAQs, and documents, and integrates with
+  Shopify, BigCommerce, Adobe Commerce/Magento, WooCommerce, and carriers such
+  as DPD, DHL, USPS, Evri, UPS, and FedEx.
 url: https://raw.githubusercontent.com/api-evangelist/primis/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: provider
+x-tier-reason: live-openapi-discovered
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- eCommerce
+- Logistics
+- Shipping
+- Returns
+- Order Tracking
+- Post-Purchase
+- Customer Experience
+- Fulfillment
+apis:
+- aid: primis:primis-auth-api
+  name: PRIMIS Auth API
+  description: The Auth API from PRIMIS — 6 operation(s) for auth.
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-auth-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-billing-api
+  name: PRIMIS Billing API
+  description: Billing API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-billing-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-campaign-api
+  name: PRIMIS Campaign API
+  description: Campaign API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Campaign
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-campaign-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-document-api
+  name: PRIMIS Document API
+  description: Documents API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Document
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-document-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-faq-api
+  name: PRIMIS FAQ API
+  description: FAQ API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - FAQ
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-faq-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-index-api
+  name: PRIMIS Index API
+  description: Index API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Index
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-index-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-invitation-api
+  name: PRIMIS Invitation API
+  description: The Invitation API from PRIMIS — 3 operation(s) for invitation.
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Invitation
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-invitation-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-order-api
+  name: PRIMIS Order API
+  description: Order API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-order-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-product-api
+  name: PRIMIS Product API
+  description: Product API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Product
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-product-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-retailer-api
+  name: PRIMIS Retailer API
+  description: Retailer API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Retailer
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-retailer-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-tracking-api
+  name: PRIMIS Tracking API
+  description: Tracking Context API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-tracking-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
+- aid: primis:primis-user-api
+  name: PRIMIS User API
+  description: User API
+  humanURL: https://api.primis.cx/api-docs
+  baseURL: https://api.primis.cx
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/primis-user-api-openapi.yml
+  - type: APIReference
+    url: https://api.primis.cx/api-docs
+  - type: Conventions
+    url: conventions/primis-conventions.yml
+  - type: ErrorCatalog
+    url: errors/primis-problem-types.yml
+  - type: DataModel
+    url: data-model/primis-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/primis-lifecycle.yml
+  - type: Conformance
+    url: conformance/primis-conformance.yml
+  - type: Sandbox
+    url: sandbox/primis-sandbox.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/primis-agentic-access.yml
+- type: DomainSecurity
+  url: security/primis-domain-security.yml
+- type: Authentication
+  url: authentication/primis-authentication.yml
 - type: Website
   url: https://primis.cx
+- type: DeveloperPortal
+  url: https://api.primis.cx/api-docs
+- type: Documentation
+  url: https://api.primis.cx/api-docs
+- type: APIReference
+  url: https://api.primis.cx/api-docs
+- type: Pricing
+  url: https://primis.cx/pricing/
+- type: SignUp
+  url: https://retailer.primis.cx
+- type: Login
+  url: https://retailer.primis.cx
+- type: Support
+  url: https://primis.cx/contact-us/
+- type: PrivacyPolicy
+  url: https://primis.cx/privacy-centre/
+- type: Integrations
+  url: https://primis.cx/integrations/
+- type: LLMsTxt
+  url: llms/primis-llms.txt
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

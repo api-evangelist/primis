@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/primis-openapi-original.json
+docs: https://api.primis.cx/api-docs
+summary: >-
+  Cross-cutting request/response semantics for the Primis REST API, derived from
+  the published OpenAPI plus the api-docs Authentication notes. Resource-oriented
+  URLs served over HTTPS; accepts application/json request bodies and returns
+  application/json responses using standard HTTP verbs and status codes.
+authentication:
+  style: bearer-token
+  header: Authorization
+  formats: [JWT, Retailer API Key, CMS API Key]
+  detail: authentication/primis-authentication.yml
+content_types:
+  request: application/json
+  response: application/json
+pagination:
+  style: page-number
+  params:
+    page: page number (1-based)
+    limit: page size
+  applies_to:
+  - GET /orders/retailer
+  notes: Page/limit query parameters observed on the retailer order listing; most other list endpoints are unpaginated or date-filtered.
+filtering:
+  date_range:
+    params: [fromDate, toDate, fromDateOrdered, toDateOrdered]
+    applies_to:
+    - GET /orders/export
+    - GET /orders/retailer
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header or documented idempotency contract is declared in the OpenAPI or api-docs.
+versioning:
+  scheme: none-in-path
+  spec_version: '1.1.0'
+  runtime_version: '2.0.5'
+  runtime_version_endpoint: GET https://api.primis.cx/ returns {"version":"..."}
+  detail: lifecycle/primis-lifecycle.yml
+error_envelope:
+  documented: false
+  observed: Error responses are declared only as HTTP 500 "Server Error" with no response body schema; success responses return the resource JSON directly (no wrapping envelope).
+  detail: errors/primis-problem-types.yml
+rate_limit_signaling:
+  documented: false
+cross_links:
+  authentication: authentication/primis-authentication.yml
+  errors: errors/primis-problem-types.yml
+  lifecycle: lifecycle/primis-lifecycle.yml
+  data_model: data-model/primis-data-model.yml
