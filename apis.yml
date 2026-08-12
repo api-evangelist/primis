@@ -340,6 +340,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/primis-mcp.yml
+- type: Overlay
+  url: overlays/primis-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/primis-agentic-access.yml
 - type: DomainSecurity
