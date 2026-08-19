@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "c19d6fb7-0e9a-406e-ac97-37def51edb01",
+      "name": "Index",
+      "description": {
+        "content": "Index API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9c7762d-cc24-4887-8ce3-4e4b192b8c5c",
+          "name": "Check if server is running",
+          "request": {
+            "name": "Check if server is running",
+            "description": {},
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de3096f4-daae-41d0-a84b-24639f000147",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ff2dd2a-7623-4e3e-a45c-f66bb8b0c484",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.primis.cx",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53da4acd-63ca-48c0-85d5-f9ed5cc1702a",
+    "name": "REST Auth Index API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Primis API docs",
+      "type": "text/plain"
+    }
+  }
+}

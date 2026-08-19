@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Auth API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register the user (Used for invitations and email verifications)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/invitations/register/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Identifing token of the invite"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register the user (Used for invitations and email verifications)"
+        },
+        {
+          "info": {
+            "name": "Login the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/auth/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Login the user"
+        },
+        {
+          "info": {
+            "name": "Get user's access control lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/auth/acl"
+          },
+          "docs": "Get user's access control lists"
+        },
+        {
+          "info": {
+            "name": "Send forgot password email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/auth/forgot-password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send forgot password email"
+        },
+        {
+          "info": {
+            "name": "Reset the user's password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/auth/reset-password/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Reset password token"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reset the user's password"
+        },
+        {
+          "info": {
+            "name": "Change the user's password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/auth/change-password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the user's password"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

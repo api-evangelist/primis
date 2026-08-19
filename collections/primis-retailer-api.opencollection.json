@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Auth Retailer API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retailer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create new retailer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/retailers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new retailer"
+        },
+        {
+          "info": {
+            "name": "Updates user's retailer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.primis.cx/retailers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates user's retailer"
+        },
+        {
+          "info": {
+            "name": "Set the live flag on a retailer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.primis.cx/retailers/live",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the live flag on a retailer"
+        },
+        {
+          "info": {
+            "name": "Sends the retailer's details to an admin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/retailers/other",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends the retailer's details to an admin"
+        },
+        {
+          "info": {
+            "name": "Register the user (Used for invitations and email verifications)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/invitations/register/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Identifing token of the invite"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register the user (Used for invitations and email verifications)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

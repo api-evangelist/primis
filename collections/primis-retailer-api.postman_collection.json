@@ -1,0 +1,681 @@
+{
+  "item": [
+    {
+      "id": "ecf9c799-54f4-4c42-bc1e-95025001e0b7",
+      "name": "Retailer",
+      "description": {
+        "content": "Retailer API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05e534db-5797-4668-9d46-cfc7c2ded6d2",
+          "name": "Create new retailer",
+          "request": {
+            "name": "Create new retailer",
+            "description": {},
+            "url": {
+              "path": [
+                "retailers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"retailer\": {\n    \"name\": \"<string>\"\n  },\n  \"user\": {\n    \"name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a131590-18f9-411a-9151-76a0992f4200",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"retailer\": {\n    \"name\": \"<string>\"\n  },\n  \"user\": {\n    \"name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"retailer\": {\n    \"name\": \"string\",\n    \"id\": \"string\",\n    \"slogan\": \"string\",\n    \"faviconUrl\": \"string\",\n    \"domain\": \"string\",\n    \"email\": \"string\",\n    \"live\": true,\n    \"overrideEmail\": \"string\",\n    \"adminEmail\": \"string\",\n    \"platform\": {\n      \"provider\": \"woocommerce\",\n      \"setupStatus\": \"string\"\n    }\n  },\n  \"user\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"retailer\": \"string\",\n    \"name\": \"string\",\n    \"surname\": \"string\",\n    \"role\": \"developer\",\n    \"blocked\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5fd7b28-11fa-46c1-8bb2-0c48941515ba",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"retailer\": {\n    \"name\": \"<string>\"\n  },\n  \"user\": {\n    \"name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8eabd66-ef5a-4925-b71b-6ec9ab3990dd",
+          "name": "Updates user's retailer",
+          "request": {
+            "name": "Updates user's retailer",
+            "description": {},
+            "url": {
+              "path": [
+                "retailers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slogan\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"email\": \"<string>\",\n  \"live\": \"<boolean>\",\n  \"overrideEmail\": \"<string>\",\n  \"adminEmail\": \"<string>\",\n  \"platform\": {\n    \"provider\": \"<string>\",\n    \"setupStatus\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3187b92-a60b-459b-986d-1245dea7c151",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slogan\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"email\": \"<string>\",\n  \"live\": \"<boolean>\",\n  \"overrideEmail\": \"<string>\",\n  \"adminEmail\": \"<string>\",\n  \"platform\": {\n    \"provider\": \"<string>\",\n    \"setupStatus\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slogan\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"email\": \"<string>\",\n  \"live\": \"<boolean>\",\n  \"overrideEmail\": \"<string>\",\n  \"adminEmail\": \"<string>\",\n  \"platform\": {\n    \"provider\": \"<string>\",\n    \"setupStatus\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52ae513b-b379-4a2c-bfeb-b04ec58b2202",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slogan\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"email\": \"<string>\",\n  \"live\": \"<boolean>\",\n  \"overrideEmail\": \"<string>\",\n  \"adminEmail\": \"<string>\",\n  \"platform\": {\n    \"provider\": \"<string>\",\n    \"setupStatus\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fc0f3b8-8881-4649-b593-a8987f0b9858",
+          "name": "Set the live flag on a retailer",
+          "request": {
+            "name": "Set the live flag on a retailer",
+            "description": {},
+            "url": {
+              "path": [
+                "retailers",
+                "live"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"live\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5bf846c-c594-4d14-b5bd-9fc07d26b5db",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slogan\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"email\": \"<string>\",\n  \"live\": \"<boolean>\",\n  \"overrideEmail\": \"<string>\",\n  \"adminEmail\": \"<string>\",\n  \"platform\": {\n    \"provider\": \"<string>\",\n    \"setupStatus\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2532a1f8-800c-4f66-a54a-b2c78d792e85",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers",
+                    "live"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"live\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75404ff1-cd97-444e-9cd0-1a8e6d3ae55c",
+          "name": "Sends the retailer's details to an admin",
+          "request": {
+            "name": "Sends the retailer's details to an admin",
+            "description": {},
+            "url": {
+              "path": [
+                "retailers",
+                "other"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"email\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"number\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8732fe30-9b60-4145-b926-1482ba9daf66",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers",
+                    "other"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"email\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aed39e35-eaff-4e01-8549-f6b2cca018f4",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "retailers",
+                    "other"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"surname\": \"<string>\",\n  \"email\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f725ca4-87d6-47a9-90a7-3f9d6f2ce77c",
+          "name": "Register the user (Used for invitations and email verifications)",
+          "request": {
+            "name": "Register the user (Used for invitations and email verifications)",
+            "description": {},
+            "url": {
+              "path": [
+                "invitations",
+                "register",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Identifing token of the invite"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4de07cc-1a02-4949-bdbb-94ed167c876e",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invitations",
+                    "register",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) Identifing token of the invite"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"email\": \"string\",\n    \"id\": \"string\",\n    \"retailer\": \"string\",\n    \"name\": \"string\",\n    \"surname\": \"string\",\n    \"role\": \"developer\",\n    \"blocked\": false\n  },\n  \"access\": {\n    \"subscription\": [\n      {\n        \"feature\": \"string\",\n        \"actions\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"feature\": \"string\",\n        \"actions\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"role\": [\n      {\n        \"feature\": \"string\",\n        \"actions\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"feature\": \"string\",\n        \"actions\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"jwt\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d65e8fe-9e0f-47a3-be7e-b7e10b8a65fd",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invitations",
+                    "register",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) Identifing token of the invite"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.primis.cx",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc7c095e-49f1-474e-bc16-d4d3b55e3dfa",
+    "name": "REST Auth Retailer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Primis API docs",
+      "type": "text/plain"
+    }
+  }
+}

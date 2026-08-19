@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Auth Invitation API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invitation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the user invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/invitations/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the invitation"
+              }
+            ]
+          },
+          "docs": "Get the user invitation"
+        },
+        {
+          "info": {
+            "name": "Resend the user invitation email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/invitations/resend",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email requiring a resend"
+              }
+            ]
+          },
+          "docs": "Resend the user invitation email"
+        },
+        {
+          "info": {
+            "name": "Register the user (Used for invitations and email verifications)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/invitations/register/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Identifing token of the invite"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register the user (Used for invitations and email verifications)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

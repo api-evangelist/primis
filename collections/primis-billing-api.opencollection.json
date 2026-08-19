@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Auth Billing API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create the checkout session. (Not in use right now)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/billing/checkout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create the checkout session. (Not in use right now)"
+        },
+        {
+          "info": {
+            "name": "Create the customer portal session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/billing/portal"
+          },
+          "docs": "Create the customer portal session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

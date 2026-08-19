@@ -1,0 +1,673 @@
+{
+  "item": [
+    {
+      "id": "431b53f9-20a7-4acc-aee8-2ccb3e09eb6b",
+      "name": "Order",
+      "description": {
+        "content": "Order API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0816800-1034-4d16-b287-01eb0eef8ec2",
+          "name": "Create new order",
+          "request": {
+            "name": "Create new order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3522e8f-0a59-41f4-891d-e05ceba953a5",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21af8595-7520-44ec-9910-eeaf5f2c9973",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4db4743e-6086-48a9-b0de-872c75184762",
+          "name": "Get order",
+          "request": {
+            "name": "Get order",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f398e23d-9e0d-4a39-80da-73cfdbc11ee9",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04c12568-0dac-4c3e-a0b0-6f42003a13d3",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the order"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a37cf22-b5fd-4b77-8958-e5b171c069f5",
+          "name": "Update order (not implemented yet)",
+          "request": {
+            "name": "Update order (not implemented yet)",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the order"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4acee880-fe0e-465c-8d96-c73702611a98",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the order"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1f53187-4ab5-4347-889a-a2d7fba3efb6",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the order"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"retailerId\": \"<string>\",\n  \"externalOrderId\": \"<string>\",\n  \"orderNumber\": \"<string>\",\n  \"products\": [\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"productCode\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"colour\": \"<string>\",\n      \"_id\": \"<string>\",\n      \"material\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"orderSubtotal\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"dateOrdered\": \"<string>\",\n  \"dateExpectedArrival\": \"<string>\",\n  \"deliveryCharge\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"shipment\": {\n    \"orderId\": \"<string>\",\n    \"status\": {\n      \"statusCode\": \"<string>\",\n      \"timestamp\": \"<string>\",\n      \"statusDescription\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"trackingCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"history\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"timestamp\": \"<string>\",\n        \"statusDescription\": \"<string>\"\n      }\n    ],\n    \"courier\": \"<string>\",\n    \"service\": \"<string>\",\n    \"estimatedDeliveryDate\": \"<string>\",\n    \"deliveredDate\": \"<string>\",\n    \"trackingMethod\": \"<string>\",\n    \"carrierTrackingUrl\": \"<string>\",\n    \"trackableStatus\": \"<string>\"\n  },\n  \"customer\": {\n    \"firstName\": \"<string>\",\n    \"secondName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneCountryCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"shippingAddress\": {\n      \"addressLine1\": \"<string>\",\n      \"addressLine2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"addressLine3\": \"<string>\",\n      \"county\": \"<string>\"\n    }\n  },\n  \"orderSource\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b599b3b1-01fd-4a42-8009-f6374452cf75",
+          "name": "Gets all orders for a retailer paginated",
+          "request": {
+            "name": "Gets all orders for a retailer paginated",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "retailer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Max per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDateOrdered",
+                  "value": "<string>",
+                  "description": "Max date"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDateOrdered",
+                  "value": "<string>",
+                  "description": "Min date"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aab728d5-be75-4941-ab3d-7dd259590a37",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "retailer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "toDateOrdered",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDateOrdered",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"retailerId\": \"<string>\",\n      \"externalOrderId\": \"<string>\",\n      \"orderNumber\": \"<string>\",\n      \"products\": [\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"orderSubtotal\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"dateOrdered\": \"<string>\",\n      \"dateExpectedArrival\": \"<string>\",\n      \"deliveryCharge\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"shipment\": {\n        \"orderId\": \"<string>\",\n        \"status\": {\n          \"statusCode\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"statusDescription\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"trackingCodes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"history\": [\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          },\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          }\n        ],\n        \"courier\": \"<string>\",\n        \"service\": \"<string>\",\n        \"estimatedDeliveryDate\": \"<string>\",\n        \"deliveredDate\": \"<string>\",\n        \"trackingMethod\": \"<string>\",\n        \"carrierTrackingUrl\": \"<string>\",\n        \"trackableStatus\": \"<string>\"\n      },\n      \"customer\": {\n        \"firstName\": \"<string>\",\n        \"secondName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneCountryCode\": \"<string>\",\n        \"phoneNumber\": \"<string>\",\n        \"shippingAddress\": {\n          \"addressLine1\": \"<string>\",\n          \"addressLine2\": \"<string>\",\n          \"country\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"addressLine3\": \"<string>\",\n          \"county\": \"<string>\"\n        }\n      },\n      \"orderSource\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"retailerId\": \"<string>\",\n      \"externalOrderId\": \"<string>\",\n      \"orderNumber\": \"<string>\",\n      \"products\": [\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"orderSubtotal\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"dateOrdered\": \"<string>\",\n      \"dateExpectedArrival\": \"<string>\",\n      \"deliveryCharge\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"shipment\": {\n        \"orderId\": \"<string>\",\n        \"status\": {\n          \"statusCode\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"statusDescription\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"trackingCodes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"history\": [\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          },\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          }\n        ],\n        \"courier\": \"<string>\",\n        \"service\": \"<string>\",\n        \"estimatedDeliveryDate\": \"<string>\",\n        \"deliveredDate\": \"<string>\",\n        \"trackingMethod\": \"<string>\",\n        \"carrierTrackingUrl\": \"<string>\",\n        \"trackableStatus\": \"<string>\"\n      },\n      \"customer\": {\n        \"firstName\": \"<string>\",\n        \"secondName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneCountryCode\": \"<string>\",\n        \"phoneNumber\": \"<string>\",\n        \"shippingAddress\": {\n          \"addressLine1\": \"<string>\",\n          \"addressLine2\": \"<string>\",\n          \"country\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"addressLine3\": \"<string>\",\n          \"county\": \"<string>\"\n        }\n      },\n      \"orderSource\": \"<string>\"\n    }\n  ],\n  \"count\": 3948.1439212696455\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f4ee88c-7bc3-44bc-bf66-dede28eacbd1",
+          "name": "Gets all orders for a retailer",
+          "request": {
+            "name": "Gets all orders for a retailer",
+            "description": {},
+            "url": {
+              "path": [
+                "orders",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<string>",
+                  "description": "Max date"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<string>",
+                  "description": "Min date"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03c47ead-f3c8-4787-a8fb-4f4f76b7ceb5",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"retailerId\": \"<string>\",\n      \"externalOrderId\": \"<string>\",\n      \"orderNumber\": \"<string>\",\n      \"products\": [\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"orderSubtotal\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"dateOrdered\": \"<string>\",\n      \"dateExpectedArrival\": \"<string>\",\n      \"deliveryCharge\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"shipment\": {\n        \"orderId\": \"<string>\",\n        \"status\": {\n          \"statusCode\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"statusDescription\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"trackingCodes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"history\": [\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          },\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          }\n        ],\n        \"courier\": \"<string>\",\n        \"service\": \"<string>\",\n        \"estimatedDeliveryDate\": \"<string>\",\n        \"deliveredDate\": \"<string>\",\n        \"trackingMethod\": \"<string>\",\n        \"carrierTrackingUrl\": \"<string>\",\n        \"trackableStatus\": \"<string>\"\n      },\n      \"customer\": {\n        \"firstName\": \"<string>\",\n        \"secondName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneCountryCode\": \"<string>\",\n        \"phoneNumber\": \"<string>\",\n        \"shippingAddress\": {\n          \"addressLine1\": \"<string>\",\n          \"addressLine2\": \"<string>\",\n          \"country\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"addressLine3\": \"<string>\",\n          \"county\": \"<string>\"\n        }\n      },\n      \"orderSource\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"retailerId\": \"<string>\",\n      \"externalOrderId\": \"<string>\",\n      \"orderNumber\": \"<string>\",\n      \"products\": [\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"price\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"productCode\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"colour\": \"<string>\",\n          \"_id\": \"<string>\",\n          \"material\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"orderSubtotal\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"dateOrdered\": \"<string>\",\n      \"dateExpectedArrival\": \"<string>\",\n      \"deliveryCharge\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"shipment\": {\n        \"orderId\": \"<string>\",\n        \"status\": {\n          \"statusCode\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"statusDescription\": \"<string>\"\n        },\n        \"id\": \"<string>\",\n        \"trackingCodes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"history\": [\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          },\n          {\n            \"statusCode\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"statusDescription\": \"<string>\"\n          }\n        ],\n        \"courier\": \"<string>\",\n        \"service\": \"<string>\",\n        \"estimatedDeliveryDate\": \"<string>\",\n        \"deliveredDate\": \"<string>\",\n        \"trackingMethod\": \"<string>\",\n        \"carrierTrackingUrl\": \"<string>\",\n        \"trackableStatus\": \"<string>\"\n      },\n      \"customer\": {\n        \"firstName\": \"<string>\",\n        \"secondName\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneCountryCode\": \"<string>\",\n        \"phoneNumber\": \"<string>\",\n        \"shippingAddress\": {\n          \"addressLine1\": \"<string>\",\n          \"addressLine2\": \"<string>\",\n          \"country\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"addressLine3\": \"<string>\",\n          \"county\": \"<string>\"\n        }\n      },\n      \"orderSource\": \"<string>\"\n    }\n  ],\n  \"count\": 3948.1439212696455\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78af26d9-1319-443b-a7ff-60365fc5a844",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.primis.cx",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d92328b6-1290-4ea2-95a1-e164dc8bbf95",
+    "name": "REST Auth Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Primis API docs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Auth User API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all the users for the retailer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/users"
+          },
+          "docs": "Get all the users for the retailer"
+        },
+        {
+          "info": {
+            "name": "Gets the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user"
+              }
+            ]
+          },
+          "docs": "Gets the user"
+        },
+        {
+          "info": {
+            "name": "Update the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.primis.cx/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the user"
+        },
+        {
+          "info": {
+            "name": "Delete the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.primis.cx/users/:id"
+          },
+          "docs": "Delete the user"
+        },
+        {
+          "info": {
+            "name": "Resend the user verification email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/users/verify/resend",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email requiring a resend"
+              }
+            ]
+          },
+          "docs": "Resend the user verification email"
+        },
+        {
+          "info": {
+            "name": "Get the user invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/invitations/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the invitation"
+              }
+            ]
+          },
+          "docs": "Get the user invitation"
+        },
+        {
+          "info": {
+            "name": "Resend the user invitation email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/invitations/resend",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email requiring a resend"
+              }
+            ]
+          },
+          "docs": "Resend the user invitation email"
+        },
+        {
+          "info": {
+            "name": "Register the user (Used for invitations and email verifications)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/invitations/register/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Identifing token of the invite"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register the user (Used for invitations and email verifications)"
+        },
+        {
+          "info": {
+            "name": "Reset the user's password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/auth/reset-password/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Reset password token"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reset the user's password"
+        },
+        {
+          "info": {
+            "name": "Change the user's password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/auth/change-password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the user's password"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

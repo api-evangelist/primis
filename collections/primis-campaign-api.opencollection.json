@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "REST Auth Campaign API",
+    "version": "1.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create retailer's campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.primis.cx/campaigns"
+          },
+          "docs": "Create retailer's campaigns"
+        },
+        {
+          "info": {
+            "name": "Get a retailer's default campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/campaigns/default"
+          },
+          "docs": "Get a retailer's default campaign"
+        },
+        {
+          "info": {
+            "name": "Get a retailer's campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.primis.cx/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the campaign"
+              }
+            ]
+          },
+          "docs": "Get a retailer's campaign"
+        },
+        {
+          "info": {
+            "name": "Update a retailer's campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.primis.cx/campaigns/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the campaign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a retailer's campaign"
+        },
+        {
+          "info": {
+            "name": "Update a retailer's campaign image",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.primis.cx/campaigns/:id/:imageType",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the campaign"
+              },
+              {
+                "name": "imageType",
+                "value": "",
+                "type": "path",
+                "description": "Type of image"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a retailer's campaign image"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

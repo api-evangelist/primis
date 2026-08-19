@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "561cad9d-7990-4e73-9dd1-65aa7cdcb618",
+      "name": "Tracking",
+      "description": {
+        "content": "Tracking Context API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c97f7400-f040-4678-8b76-1301a3ac680d",
+          "name": "Get the Preview Tracking Context for Tracking Page",
+          "request": {
+            "name": "Get the Preview Tracking Context for Tracking Page",
+            "description": {},
+            "url": {
+              "path": [
+                "tracking",
+                "page",
+                "preview",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The preview campaign id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locale\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60f00505-dfcb-4b12-8ef7-0e9874a17c46",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracking",
+                    "page",
+                    "preview",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The preview campaign id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API Key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locale\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaign\": {\n    \"id\": \"string\",\n    \"retailerId\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"slogan\": \"string\",\n    \"productRecommendations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"productRecommendationsEnabled\": true,\n    \"status\": \"inactive\"\n  },\n  \"variant\": {\n    \"locale\": \"string\",\n    \"marketing\": {}\n  },\n  \"order\": {\n    \"id\": \"string\",\n    \"retailerId\": \"string\",\n    \"externalOrderId\": \"string\",\n    \"orderNumber\": \"string\",\n    \"products\": [\n      {\n        \"name\": \"string\",\n        \"quantity\": 1163.4860488700838,\n        \"price\": {\n          \"amount\": 9232.74278989154,\n          \"currency\": \"string\"\n        },\n        \"productCode\": \"string\",\n        \"imageUrl\": \"string\",\n        \"colour\": \"string\",\n        \"_id\": \"string\",\n        \"material\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"quantity\": 2495.1190919045307,\n        \"price\": {\n          \"amount\": 6250.24995943196,\n          \"currency\": \"string\"\n        },\n        \"productCode\": \"string\",\n        \"imageUrl\": \"string\",\n        \"colour\": \"string\",\n        \"_id\": \"string\",\n        \"material\": \"string\",\n        \"description\": \"string\"\n      }\n    ],\n    \"orderSubtotal\": {\n      \"amount\": 7443.617773518758,\n      \"currency\": \"string\"\n    },\n    \"dateOrdered\": \"string\",\n    \"dateExpectedArrival\": \"string\",\n    \"deliveryCharge\": {\n      \"amount\": 3650.651261167447,\n      \"currency\": \"string\"\n    },\n    \"shipment\": {\n      \"orderId\": \"string\",\n      \"status\": {\n        \"statusCode\": \"CA\",\n        \"timestamp\": \"string\",\n        \"statusDescription\": \"string\"\n      },\n      \"id\": \"string\",\n      \"trackingCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"history\": [\n        {\n          \"statusCode\": \"AC\",\n          \"timestamp\": \"string\",\n          \"statusDescription\": \"string\"\n        },\n        {\n          \"statusCode\": \"IT\",\n          \"timestamp\": \"string\",\n          \"statusDescription\": \"string\"\n        }\n      ],\n      \"courier\": \"string\",\n      \"service\": \"string\",\n      \"estimatedDeliveryDate\": \"string\",\n      \"deliveredDate\": \"string\",\n      \"trackingMethod\": \"custom\",\n      \"carrierTrackingUrl\": \"string\",\n      \"trackableStatus\": \"confirmed\"\n    },\n    \"customer\": {\n      \"firstName\": \"string\",\n      \"secondName\": \"string\",\n      \"email\": \"string\",\n      \"phoneCountryCode\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"shippingAddress\": {\n        \"addressLine1\": \"string\",\n        \"addressLine2\": \"string\",\n        \"country\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"addressLine3\": \"string\",\n        \"county\": \"string\"\n      }\n    },\n    \"orderSource\": \"channel-api\"\n  },\n  \"retailer\": {\n    \"name\": \"string\",\n    \"id\": \"string\",\n    \"slogan\": \"string\",\n    \"faviconUrl\": \"string\",\n    \"domain\": \"string\",\n    \"email\": \"string\",\n    \"live\": true,\n    \"overrideEmail\": \"string\",\n    \"adminEmail\": \"string\",\n    \"platform\": {\n      \"provider\": \"magento\",\n      \"setupStatus\": \"string\"\n    }\n  },\n  \"templateText\": {},\n  \"customHtml\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52e6c6f2-22a4-4196-bbbc-5fa2ccefc1c7",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracking",
+                    "page",
+                    "preview",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The preview campaign id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API Key",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locale\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.primis.cx",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "440af389-a51c-4356-b283-38b05b1734f9",
+    "name": "REST Auth Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Primis API docs",
+      "type": "text/plain"
+    }
+  }
+}
