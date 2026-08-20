@@ -37,6 +37,16 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
+- E-Commerce
+- Logistics
+- Shipping
+- Returns
+- Order Tracking
+- Post-Purchase
+- Customer Experience
+- Fulfillment
+tags_raw:
+- Company
 - eCommerce
 - Logistics
 - Shipping
@@ -52,6 +62,8 @@ apis:
   humanURL: https://api.primis.cx/api-docs
   baseURL: https://api.primis.cx
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
