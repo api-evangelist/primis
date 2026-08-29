@@ -364,6 +364,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/primis-capability-edges.yml
+  name: PRIMIS Business Capability Map
 - type: MCPServer
   url: mcp/primis-mcp.yml
 - type: Overlay
