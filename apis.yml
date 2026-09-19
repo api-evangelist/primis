@@ -149,6 +149,8 @@ apis:
   humanURL: https://api.primis.cx/api-docs
   baseURL: https://api.primis.cx
   tags:
+  - Documents
+  tags_raw:
   - Document
   properties:
   - type: OpenAPI
