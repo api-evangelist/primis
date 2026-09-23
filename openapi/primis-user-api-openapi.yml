@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: REST Auth User API
+  title: REST User API
   version: 1.1.0
   description: Primis API docs
 servers:
@@ -28,6 +28,8 @@ paths:
                   $ref: '#/components/schemas/User'
         '500':
           description: Server Error
+      operationId: getUsers
+      x-operation-id-source: derived
   /users/{id}:
     get:
       tags:
@@ -49,6 +51,8 @@ paths:
                 $ref: '#/components/schemas/User'
         '500':
           description: Server Error
+      operationId: getUsersById
+      x-operation-id-source: derived
     put:
       tags:
       - User
@@ -74,6 +78,8 @@ paths:
                 $ref: '#/components/schemas/User'
         '500':
           description: Server Error
+      operationId: putUsersById
+      x-operation-id-source: derived
     delete:
       tags:
       - User
@@ -87,6 +93,8 @@ paths:
                 $ref: '#/components/schemas/User'
         '500':
           description: Server Error
+      operationId: deleteUsersById
+      x-operation-id-source: derived
   /users/verify/resend:
     get:
       tags:
@@ -104,6 +112,8 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: getUsersVerifyResend
+      x-operation-id-source: derived
   /invitations/{token}:
     get:
       tags:
@@ -127,6 +137,8 @@ paths:
                     $ref: '#/components/schemas/Invitation'
         '500':
           description: Server Error
+      operationId: getInvitationsByToken
+      x-operation-id-source: derived
   /invitations/resend:
     get:
       tags:
@@ -144,6 +156,8 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: getInvitationsResend
+      x-operation-id-source: derived
   /invitations/register/{token}:
     post:
       tags:
@@ -178,6 +192,8 @@ paths:
                     type: string
         '500':
           description: Server Error
+      operationId: postInvitationsRegisterByToken
+      x-operation-id-source: derived
   /auth/reset-password/{token}:
     post:
       tags:
@@ -202,6 +218,8 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: postAuthResetPasswordByToken
+      x-operation-id-source: derived
   /auth/change-password:
     post:
       tags:
@@ -221,22 +239,21 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: postAuthChangePassword
+      x-operation-id-source: derived
 components:
   schemas:
-    FeaturePermissions:
+    UserFeatureAccess:
       properties:
-        feature:
-          type: string
-        actions:
-          items:
-            type: string
-          title: FeaturePermissions.actions
+        subscription:
           type: array
-      required:
-      - feature
-      - actions
-      additionalProperties: false
-      title: FeaturePermissions
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
     User:
       properties:
@@ -269,17 +286,20 @@ components:
       additionalProperties: false
       title: User
       type: object
-    UserFeatureAccess:
+    FeaturePermissions:
       properties:
-        subscription:
-          type: array
+        feature:
+          type: string
+        actions:
           items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
+            type: string
+          title: FeaturePermissions.actions
           type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
       type: object
     Invitation:
       properties:

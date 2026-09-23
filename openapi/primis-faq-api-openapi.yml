@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: REST Auth FAQ API
+  title: REST FAQ API
   version: 1.1.0
   description: Primis API docs
 servers:
@@ -28,6 +28,8 @@ paths:
                   $ref: '#/components/schemas/Faq'
         '500':
           description: Server Error
+      operationId: getFaqs
+      x-operation-id-source: derived
     post:
       tags:
       - FAQ
@@ -46,6 +48,8 @@ paths:
                 $ref: '#/components/schemas/Faq'
         '500':
           description: Server Error
+      operationId: postFaqs
+      x-operation-id-source: derived
   /faqs/{id}:
     put:
       tags:
@@ -72,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/Faq'
         '500':
           description: Server Error
+      operationId: putFaqsById
+      x-operation-id-source: derived
 components:
   schemas:
     Faq:

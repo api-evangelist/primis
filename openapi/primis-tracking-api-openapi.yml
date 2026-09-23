@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: REST Auth Tracking API
+  title: REST Tracking API
   version: 1.1.0
   description: Primis API docs
 servers:
@@ -73,8 +73,84 @@ paths:
                     type: string
         '500':
           description: Server Error
+      operationId: getTrackingPagePreviewByCampaignId
+      x-operation-id-source: derived
 components:
   schemas:
+    Price:
+      properties:
+        amount:
+          title: Price.amount
+          type: number
+        currency:
+          title: Price.currency
+          type: string
+      required:
+      - amount
+      - currency
+      additionalProperties: false
+      title: Price
+      type: object
+    Address:
+      properties:
+        addressLine1:
+          title: Address.addressLine1
+          type: string
+        addressLine2:
+          title: Address.addressLine2
+          type: string
+        addressLine3:
+          title: Address.addressLine3
+          type: string
+        country:
+          title: Address.country
+          type: string
+        county:
+          title: Address.county
+          type: string
+        city:
+          title: Address.city
+          type: string
+        postalCode:
+          title: Address.postalCode
+          type: string
+      required:
+      - addressLine1
+      - addressLine2
+      - country
+      - city
+      - postalCode
+      additionalProperties: false
+      title: Address
+      type: object
+    ShipmentStatus:
+      properties:
+        statusCode:
+          type: string
+          enum:
+          - OC
+          - AC
+          - RW
+          - IT
+          - DE
+          - OH
+          - CA
+          - FA
+          - RC
+          - PR
+          title: ShipmentStatus.statusCode
+        statusDescription:
+          title: ShipmentStatus.statusDescription
+          type: string
+        timestamp:
+          type: string
+          title: ShipmentStatus.timestamp
+      required:
+      - statusCode
+      - timestamp
+      additionalProperties: false
+      title: ShipmentStatus
+      type: object
     Customer:
       properties:
         firstName:
@@ -104,6 +180,178 @@ components:
       - shippingAddress
       additionalProperties: false
       title: Customer
+      type: object
+    Campaign:
+      properties:
+        id:
+          title: Campaign.id
+          type: string
+        retailerId:
+          title: Campaign.retailerId
+          type: string
+        name:
+          title: Campaign.name
+          type: string
+        description:
+          title: Campaign.description
+          type: string
+        slogan:
+          title: Campaign.slogan
+          type: string
+        variants:
+          type: array
+        productRecommendations:
+          items:
+            title: Campaign.productRecommendations.[]
+            type: string
+          title: Campaign.productRecommendations
+          type: array
+        productRecommendationsEnabled:
+          title: Campaign.productRecommendationsEnabled
+          type: boolean
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - deleted
+          title: Campaign.status
+      additionalProperties: false
+      title: Campaign
+      type: object
+    Retailer:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slogan:
+          type: string
+        faviconUrl:
+          type: string
+        domain:
+          type: string
+        email:
+          type: string
+        live:
+          type: boolean
+        overrideEmail:
+          type: string
+        adminEmail:
+          type: string
+        platform:
+          $ref: '#/components/schemas/RetailerPlatform'
+      required:
+      - name
+      additionalProperties: false
+      title: Retailer
+      type: object
+    Order:
+      properties:
+        id:
+          title: Order.id
+          type: string
+        retailerId:
+          title: Order.retailerId
+          type: string
+        externalOrderId:
+          title: Order.externalOrderId
+          type: string
+        orderNumber:
+          title: Order.orderNumber
+          type: string
+        products:
+          items:
+            $ref: '#/components/schemas/OrderProduct'
+            title: Order.products.[]
+          title: Order.products
+          type: array
+        orderSubtotal:
+          $ref: '#/components/schemas/Price'
+          title: Order.orderSubtotal
+        dateOrdered:
+          type: string
+          title: Order.dateOrdered
+        dateExpectedArrival:
+          type: string
+          title: Order.dateExpectedArrival
+        deliveryCharge:
+          $ref: '#/components/schemas/Price'
+          title: Order.deliveryCharge
+        shipment:
+          $ref: '#/components/schemas/Shipment'
+          title: Order.shipment
+        customer:
+          $ref: '#/components/schemas/Customer'
+          title: Order.customer
+        orderSource:
+          type: string
+          enum:
+          - primis-api
+          - shopify
+          - channel-api
+          title: Order.orderSource
+      additionalProperties: false
+      title: Order
+      type: object
+    OrderProduct:
+      allOf:
+      - properties:
+          _id:
+            title: _id
+            type: string
+          name:
+            title: name
+            type: string
+          material:
+            title: material
+            type: string
+          quantity:
+            title: quantity
+            type: number
+          price:
+            $ref: '#/components/schemas/Price'
+            title: price
+          productCode:
+            title: productCode
+            type: string
+          description:
+            title: description
+            type: string
+          imageUrl:
+            title: imageUrl
+            type: string
+          colour:
+            title: colour
+            type: string
+        required:
+        - name
+        - quantity
+        - price
+        - productCode
+        - imageUrl
+        - colour
+        additionalProperties: false
+        type: object
+      title: OrderProduct
+    RetailerPlatform:
+      properties:
+        provider:
+          type: string
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
+      additionalProperties: false
+      title: RetailerPlatform
       type: object
     Shipment:
       properties:
@@ -165,252 +413,6 @@ components:
       - status
       additionalProperties: false
       title: Shipment
-      type: object
-    Campaign:
-      properties:
-        id:
-          title: Campaign.id
-          type: string
-        retailerId:
-          title: Campaign.retailerId
-          type: string
-        name:
-          title: Campaign.name
-          type: string
-        description:
-          title: Campaign.description
-          type: string
-        slogan:
-          title: Campaign.slogan
-          type: string
-        variants:
-          type: array
-        productRecommendations:
-          items:
-            title: Campaign.productRecommendations.[]
-            type: string
-          title: Campaign.productRecommendations
-          type: array
-        productRecommendationsEnabled:
-          title: Campaign.productRecommendationsEnabled
-          type: boolean
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - deleted
-          title: Campaign.status
-      additionalProperties: false
-      title: Campaign
-      type: object
-    Address:
-      properties:
-        addressLine1:
-          title: Address.addressLine1
-          type: string
-        addressLine2:
-          title: Address.addressLine2
-          type: string
-        addressLine3:
-          title: Address.addressLine3
-          type: string
-        country:
-          title: Address.country
-          type: string
-        county:
-          title: Address.county
-          type: string
-        city:
-          title: Address.city
-          type: string
-        postalCode:
-          title: Address.postalCode
-          type: string
-      required:
-      - addressLine1
-      - addressLine2
-      - country
-      - city
-      - postalCode
-      additionalProperties: false
-      title: Address
-      type: object
-    Order:
-      properties:
-        id:
-          title: Order.id
-          type: string
-        retailerId:
-          title: Order.retailerId
-          type: string
-        externalOrderId:
-          title: Order.externalOrderId
-          type: string
-        orderNumber:
-          title: Order.orderNumber
-          type: string
-        products:
-          items:
-            $ref: '#/components/schemas/OrderProduct'
-            title: Order.products.[]
-          title: Order.products
-          type: array
-        orderSubtotal:
-          $ref: '#/components/schemas/Price'
-          title: Order.orderSubtotal
-        dateOrdered:
-          type: string
-          title: Order.dateOrdered
-        dateExpectedArrival:
-          type: string
-          title: Order.dateExpectedArrival
-        deliveryCharge:
-          $ref: '#/components/schemas/Price'
-          title: Order.deliveryCharge
-        shipment:
-          $ref: '#/components/schemas/Shipment'
-          title: Order.shipment
-        customer:
-          $ref: '#/components/schemas/Customer'
-          title: Order.customer
-        orderSource:
-          type: string
-          enum:
-          - primis-api
-          - shopify
-          - channel-api
-          title: Order.orderSource
-      additionalProperties: false
-      title: Order
-      type: object
-    RetailerPlatform:
-      properties:
-        provider:
-          type: string
-          enum:
-          - shopify
-          - magento
-          - woocommerce
-          - other
-        setupStatus:
-          enum:
-          - store-selection
-          - setup-guide-option
-          - setup-guide-skip
-          - setup-guide-start
-          - setup-complete
-      additionalProperties: false
-      title: RetailerPlatform
-      type: object
-    ShipmentStatus:
-      properties:
-        statusCode:
-          type: string
-          enum:
-          - OC
-          - AC
-          - RW
-          - IT
-          - DE
-          - OH
-          - CA
-          - FA
-          - RC
-          - PR
-          title: ShipmentStatus.statusCode
-        statusDescription:
-          title: ShipmentStatus.statusDescription
-          type: string
-        timestamp:
-          type: string
-          title: ShipmentStatus.timestamp
-      required:
-      - statusCode
-      - timestamp
-      additionalProperties: false
-      title: ShipmentStatus
-      type: object
-    OrderProduct:
-      allOf:
-      - properties:
-          _id:
-            title: _id
-            type: string
-          name:
-            title: name
-            type: string
-          material:
-            title: material
-            type: string
-          quantity:
-            title: quantity
-            type: number
-          price:
-            $ref: '#/components/schemas/Price'
-            title: price
-          productCode:
-            title: productCode
-            type: string
-          description:
-            title: description
-            type: string
-          imageUrl:
-            title: imageUrl
-            type: string
-          colour:
-            title: colour
-            type: string
-        required:
-        - name
-        - quantity
-        - price
-        - productCode
-        - imageUrl
-        - colour
-        additionalProperties: false
-        type: object
-      title: OrderProduct
-    Price:
-      properties:
-        amount:
-          title: Price.amount
-          type: number
-        currency:
-          title: Price.currency
-          type: string
-      required:
-      - amount
-      - currency
-      additionalProperties: false
-      title: Price
-      type: object
-    Retailer:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slogan:
-          type: string
-        faviconUrl:
-          type: string
-        domain:
-          type: string
-        email:
-          type: string
-        live:
-          type: boolean
-        overrideEmail:
-          type: string
-        adminEmail:
-          type: string
-        platform:
-          $ref: '#/components/schemas/RetailerPlatform'
-      required:
-      - name
-      additionalProperties: false
-      title: Retailer
       type: object
   securitySchemes:
     bearerAuth:

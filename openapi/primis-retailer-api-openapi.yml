@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: REST Auth Retailer API
+  title: REST Retailer API
   version: 1.1.0
   description: Primis API docs
 servers:
@@ -52,6 +52,8 @@ paths:
                     $ref: '#/components/schemas/User'
         '500':
           description: Server Error
+      operationId: postRetailers
+      x-operation-id-source: derived
     put:
       security:
       - bearerAuth: []
@@ -73,6 +75,8 @@ paths:
                 $ref: '#/components/schemas/Retailer'
         '500':
           description: Server Error
+      operationId: putRetailers
+      x-operation-id-source: derived
   /retailers/live:
     put:
       security:
@@ -98,6 +102,8 @@ paths:
                 $ref: '#/components/schemas/Retailer'
         '500':
           description: Server Error
+      operationId: putRetailersLive
+      x-operation-id-source: derived
   /retailers/other:
     post:
       tags:
@@ -126,6 +132,8 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: postRetailersOther
+      x-operation-id-source: derived
   /invitations/register/{token}:
     post:
       tags:
@@ -160,42 +168,10 @@ paths:
                     type: string
         '500':
           description: Server Error
+      operationId: postInvitationsRegisterByToken
+      x-operation-id-source: derived
 components:
   schemas:
-    FeaturePermissions:
-      properties:
-        feature:
-          type: string
-        actions:
-          items:
-            type: string
-          title: FeaturePermissions.actions
-          type: array
-      required:
-      - feature
-      - actions
-      additionalProperties: false
-      title: FeaturePermissions
-      type: object
-    RetailerPlatform:
-      properties:
-        provider:
-          type: string
-          enum:
-          - shopify
-          - magento
-          - woocommerce
-          - other
-        setupStatus:
-          enum:
-          - store-selection
-          - setup-guide-option
-          - setup-guide-skip
-          - setup-guide-start
-          - setup-complete
-      additionalProperties: false
-      title: RetailerPlatform
-      type: object
     User:
       properties:
         id:
@@ -227,18 +203,6 @@ components:
       additionalProperties: false
       title: User
       type: object
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
-      type: object
     Retailer:
       properties:
         id:
@@ -265,6 +229,52 @@ components:
       - name
       additionalProperties: false
       title: Retailer
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
+      type: object
+    RetailerPlatform:
+      properties:
+        provider:
+          type: string
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
+      additionalProperties: false
+      title: RetailerPlatform
+      type: object
+    FeaturePermissions:
+      properties:
+        feature:
+          type: string
+        actions:
+          items:
+            type: string
+          title: FeaturePermissions.actions
+          type: array
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
       type: object
   securitySchemes:
     bearerAuth:

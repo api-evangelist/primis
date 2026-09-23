@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: REST Auth API
   version: 1.1.0
@@ -45,6 +45,8 @@ paths:
                     type: string
         '500':
           description: Server Error
+      operationId: postInvitationsRegisterByToken
+      x-operation-id-source: derived
   /auth/login:
     post:
       tags:
@@ -74,6 +76,8 @@ paths:
                     type: string
         '500':
           description: Server Error
+      operationId: postAuthLogin
+      x-operation-id-source: derived
   /auth/acl:
     get:
       tags:
@@ -88,6 +92,8 @@ paths:
                 $ref: '#/components/schemas/UserFeatureAccess'
         '500':
           description: Server Error
+      operationId: getAuthAcl
+      x-operation-id-source: derived
   /auth/forgot-password:
     post:
       tags:
@@ -105,6 +111,8 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: postAuthForgotPassword
+      x-operation-id-source: derived
   /auth/reset-password/{token}:
     post:
       tags:
@@ -129,6 +137,8 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: postAuthResetPasswordByToken
+      x-operation-id-source: derived
   /auth/change-password:
     post:
       tags:
@@ -148,22 +158,21 @@ paths:
           description: Ok
         '500':
           description: Server Error
+      operationId: postAuthChangePassword
+      x-operation-id-source: derived
 components:
   schemas:
-    FeaturePermissions:
+    UserFeatureAccess:
       properties:
-        feature:
-          type: string
-        actions:
-          items:
-            type: string
-          title: FeaturePermissions.actions
+        subscription:
           type: array
-      required:
-      - feature
-      - actions
-      additionalProperties: false
-      title: FeaturePermissions
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
     User:
       properties:
@@ -196,17 +205,20 @@ components:
       additionalProperties: false
       title: User
       type: object
-    UserFeatureAccess:
+    FeaturePermissions:
       properties:
-        subscription:
-          type: array
+        feature:
+          type: string
+        actions:
           items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
+            type: string
+          title: FeaturePermissions.actions
           type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
       type: object
   securitySchemes:
     bearerAuth:

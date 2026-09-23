@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: REST Auth Order API
+  title: REST Order API
   version: 1.1.0
   description: Primis API docs
 servers:
@@ -31,6 +31,8 @@ paths:
                 $ref: '#/components/schemas/Order'
         '500':
           description: Server Error
+      operationId: postOrders
+      x-operation-id-source: derived
   /orders/{orderId}:
     get:
       tags:
@@ -52,6 +54,8 @@ paths:
                 $ref: '#/components/schemas/Order'
         '500':
           description: Server Error
+      operationId: getOrdersByOrderId
+      x-operation-id-source: derived
     post:
       tags:
       - Order
@@ -77,6 +81,8 @@ paths:
                 $ref: '#/components/schemas/Order'
         '500':
           description: Server Error
+      operationId: postOrdersByOrderId
+      x-operation-id-source: derived
   /orders/retailer:
     get:
       tags:
@@ -117,6 +123,8 @@ paths:
                       $ref: '#/components/schemas/Order'
                   count:
                     type: number
+      operationId: getOrdersRetailer
+      x-operation-id-source: derived
   /orders/export:
     get:
       tags:
@@ -149,8 +157,84 @@ paths:
                     type: number
         '500':
           description: Server Error
+      operationId: getOrdersExport
+      x-operation-id-source: derived
 components:
   schemas:
+    Price:
+      properties:
+        amount:
+          title: Price.amount
+          type: number
+        currency:
+          title: Price.currency
+          type: string
+      required:
+      - amount
+      - currency
+      additionalProperties: false
+      title: Price
+      type: object
+    Address:
+      properties:
+        addressLine1:
+          title: Address.addressLine1
+          type: string
+        addressLine2:
+          title: Address.addressLine2
+          type: string
+        addressLine3:
+          title: Address.addressLine3
+          type: string
+        country:
+          title: Address.country
+          type: string
+        county:
+          title: Address.county
+          type: string
+        city:
+          title: Address.city
+          type: string
+        postalCode:
+          title: Address.postalCode
+          type: string
+      required:
+      - addressLine1
+      - addressLine2
+      - country
+      - city
+      - postalCode
+      additionalProperties: false
+      title: Address
+      type: object
+    ShipmentStatus:
+      properties:
+        statusCode:
+          type: string
+          enum:
+          - OC
+          - AC
+          - RW
+          - IT
+          - DE
+          - OH
+          - CA
+          - FA
+          - RC
+          - PR
+          title: ShipmentStatus.statusCode
+        statusDescription:
+          title: ShipmentStatus.statusDescription
+          type: string
+        timestamp:
+          type: string
+          title: ShipmentStatus.timestamp
+      required:
+      - statusCode
+      - timestamp
+      additionalProperties: false
+      title: ShipmentStatus
+      type: object
     Customer:
       properties:
         firstName:
@@ -180,95 +264,6 @@ components:
       - shippingAddress
       additionalProperties: false
       title: Customer
-      type: object
-    Shipment:
-      properties:
-        id:
-          title: Shipment.id
-          type: string
-        orderId:
-          title: Shipment.orderId
-          type: string
-        trackingCodes:
-          items:
-            title: Shipment.trackingCodes.[]
-            type: string
-          title: Shipment.trackingCodes
-          type: array
-        status:
-          $ref: '#/components/schemas/ShipmentStatus'
-          title: Shipment.status
-        history:
-          items:
-            $ref: '#/components/schemas/ShipmentStatus'
-            title: Shipment.history.[]
-          title: Shipment.history
-          type: array
-        courier:
-          title: Shipment.courier
-          type: string
-        service:
-          title: Shipment.service
-          type: string
-        estimatedDeliveryDate:
-          title: Shipment.estimatedDeliveryDate
-          type: string
-        deliveredDate:
-          anyOf:
-          - title: Shipment.deliveredDate
-            type: string
-          title: Shipment.deliveredDate
-        trackingMethod:
-          type: string
-          enum:
-          - tracking-service
-          - shopify
-          - courier-api
-          - custom
-          title: Shipment.trackingMethod
-        carrierTrackingUrl:
-          title: Shipment.carrierTrackingUrl
-          type: string
-        trackableStatus:
-          type: string
-          enum:
-          - confirmed
-          - pending
-          - no-tracking
-          title: Shipment.trackableStatus
-      required:
-      - orderId
-      - status
-      additionalProperties: false
-      title: Shipment
-      type: object
-    ShipmentStatus:
-      properties:
-        statusCode:
-          type: string
-          enum:
-          - OC
-          - AC
-          - RW
-          - IT
-          - DE
-          - OH
-          - CA
-          - FA
-          - RC
-          - PR
-          title: ShipmentStatus.statusCode
-        statusDescription:
-          title: ShipmentStatus.statusDescription
-          type: string
-        timestamp:
-          type: string
-          title: ShipmentStatus.timestamp
-      required:
-      - statusCode
-      - timestamp
-      additionalProperties: false
-      title: ShipmentStatus
       type: object
     Order:
       properties:
@@ -358,51 +353,66 @@ components:
         additionalProperties: false
         type: object
       title: OrderProduct
-    Price:
+    Shipment:
       properties:
-        amount:
-          title: Price.amount
-          type: number
-        currency:
-          title: Price.currency
+        id:
+          title: Shipment.id
           type: string
+        orderId:
+          title: Shipment.orderId
+          type: string
+        trackingCodes:
+          items:
+            title: Shipment.trackingCodes.[]
+            type: string
+          title: Shipment.trackingCodes
+          type: array
+        status:
+          $ref: '#/components/schemas/ShipmentStatus'
+          title: Shipment.status
+        history:
+          items:
+            $ref: '#/components/schemas/ShipmentStatus'
+            title: Shipment.history.[]
+          title: Shipment.history
+          type: array
+        courier:
+          title: Shipment.courier
+          type: string
+        service:
+          title: Shipment.service
+          type: string
+        estimatedDeliveryDate:
+          title: Shipment.estimatedDeliveryDate
+          type: string
+        deliveredDate:
+          anyOf:
+          - title: Shipment.deliveredDate
+            type: string
+          title: Shipment.deliveredDate
+        trackingMethod:
+          type: string
+          enum:
+          - tracking-service
+          - shopify
+          - courier-api
+          - custom
+          title: Shipment.trackingMethod
+        carrierTrackingUrl:
+          title: Shipment.carrierTrackingUrl
+          type: string
+        trackableStatus:
+          type: string
+          enum:
+          - confirmed
+          - pending
+          - no-tracking
+          title: Shipment.trackableStatus
       required:
-      - amount
-      - currency
+      - orderId
+      - status
       additionalProperties: false
-      title: Price
-      type: object
-    Address:
-      properties:
-        addressLine1:
-          title: Address.addressLine1
-          type: string
-        addressLine2:
-          title: Address.addressLine2
-          type: string
-        addressLine3:
-          title: Address.addressLine3
-          type: string
-        country:
-          title: Address.country
-          type: string
-        county:
-          title: Address.county
-          type: string
-        city:
-          title: Address.city
-          type: string
-        postalCode:
-          title: Address.postalCode
-          type: string
-      required:
-      - addressLine1
-      - addressLine2
-      - country
-      - city
-      - postalCode
-      additionalProperties: false
-      title: Address
+      title: Shipment
       type: object
   securitySchemes:
     bearerAuth:

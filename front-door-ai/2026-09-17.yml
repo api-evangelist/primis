@@ -1,0 +1,25 @@
+# Front Door AI Index — primis — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: primis
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: primis.cx
+  final_host: primis.cx
+  ownership: own
+  owner: primis
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 1
+  host_score: 1
+  density: 1.1
+  words: 909
+  tiers:
+    agentic: 1
+    core: 0
+    model: 0
+  ambiguous: 0
+  top_terms:
+    chatbot: 1

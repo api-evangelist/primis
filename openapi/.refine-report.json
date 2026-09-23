@@ -1,18 +1,7 @@
 {
   "provider": "primis",
   "sources": [
-    "primis-auth-api-openapi.yml",
-    "primis-billing-api-openapi.yml",
-    "primis-campaign-api-openapi.yml",
-    "primis-document-api-openapi.yml",
-    "primis-faq-api-openapi.yml",
-    "primis-index-api-openapi.yml",
-    "primis-invitation-api-openapi.yml",
-    "primis-order-api-openapi.yml",
-    "primis-product-api-openapi.yml",
-    "primis-retailer-api-openapi.yml",
-    "primis-tracking-api-openapi.yml",
-    "primis-user-api-openapi.yml"
+    "_original/primis-openapi-original.json"
   ],
   "outputs": [
     "primis-auth-api-openapi.yml",
@@ -31,6 +20,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "primis-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "primis-openapi-original.json: declared missing tag: Auth",
+    "primis-openapi-original.json: declared missing tag: Invitation",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "primis-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-campaign-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-document-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-faq-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-index-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-invitation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-order-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-product-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-retailer-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-tracking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "primis-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
