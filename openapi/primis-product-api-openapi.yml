@@ -148,6 +148,20 @@ components:
       additionalProperties: false
       title: ProductVariant
       type: object
+    ProductColor:
+      properties:
+        name:
+          title: ProductColor.name
+          type: string
+        value:
+          title: ProductColor.value
+          type: string
+      required:
+      - name
+      - value
+      additionalProperties: false
+      title: ProductColor
+      type: object
     Product:
       properties:
         _id:
@@ -198,20 +212,6 @@ components:
       - hyperlink
       additionalProperties: false
       title: Product
-      type: object
-    ProductColor:
-      properties:
-        name:
-          title: ProductColor.name
-          type: string
-        value:
-          title: ProductColor.value
-          type: string
-      required:
-      - name
-      - value
-      additionalProperties: false
-      title: ProductColor
       type: object
   securitySchemes:
     bearerAuth:

@@ -243,18 +243,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
-      type: object
     User:
       properties:
         id:
@@ -286,21 +274,6 @@ components:
       additionalProperties: false
       title: User
       type: object
-    FeaturePermissions:
-      properties:
-        feature:
-          type: string
-        actions:
-          items:
-            type: string
-          title: FeaturePermissions.actions
-          type: array
-      required:
-      - feature
-      - actions
-      additionalProperties: false
-      title: FeaturePermissions
-      type: object
     Invitation:
       properties:
         user:
@@ -323,6 +296,33 @@ components:
       - expiration
       additionalProperties: false
       title: Invitation
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
+      type: object
+    FeaturePermissions:
+      properties:
+        feature:
+          type: string
+        actions:
+          items:
+            type: string
+          title: FeaturePermissions.actions
+          type: array
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
       type: object
   securitySchemes:
     bearerAuth:

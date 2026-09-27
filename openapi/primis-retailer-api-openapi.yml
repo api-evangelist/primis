@@ -172,37 +172,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    User:
-      properties:
-        id:
-          title: User.id
-          type: string
-        retailer:
-          title: User.retailer
-          type: string
-        name:
-          title: User.name
-          type: string
-        surname:
-          title: User.surname
-          type: string
-        email:
-          title: User.email
-          type: string
-        role:
-          type: string
-          enum:
-          - retail-admin
-          - developer
-          - marketing
-        blocked:
-          title: User.blocked
-          type: boolean
-      required:
-      - email
-      additionalProperties: false
-      title: User
-      type: object
     Retailer:
       properties:
         id:
@@ -229,18 +198,6 @@ components:
       - name
       additionalProperties: false
       title: Retailer
-      type: object
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
       type: object
     RetailerPlatform:
       properties:
@@ -275,6 +232,49 @@ components:
       - actions
       additionalProperties: false
       title: FeaturePermissions
+      type: object
+    User:
+      properties:
+        id:
+          title: User.id
+          type: string
+        retailer:
+          title: User.retailer
+          type: string
+        name:
+          title: User.name
+          type: string
+        surname:
+          title: User.surname
+          type: string
+        email:
+          title: User.email
+          type: string
+        role:
+          type: string
+          enum:
+          - retail-admin
+          - developer
+          - marketing
+        blocked:
+          title: User.blocked
+          type: boolean
+      required:
+      - email
+      additionalProperties: false
+      title: User
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
   securitySchemes:
     bearerAuth:

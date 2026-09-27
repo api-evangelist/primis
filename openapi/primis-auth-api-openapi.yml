@@ -162,18 +162,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
-      type: object
     User:
       properties:
         id:
@@ -204,6 +192,18 @@ components:
       - email
       additionalProperties: false
       title: User
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
     FeaturePermissions:
       properties:

@@ -51,14 +51,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CheckoutResponse:
-      properties:
-        redirectUrl:
-          type: string
-      type: object
     CheckoutRequest:
       properties:
         subscriptionId:
+          type: string
+      type: object
+    CheckoutResponse:
+      properties:
+        redirectUrl:
           type: string
       type: object
   securitySchemes:
