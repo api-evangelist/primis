@@ -161,67 +161,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Shipment:
-      properties:
-        id:
-          title: Shipment.id
-          type: string
-        orderId:
-          title: Shipment.orderId
-          type: string
-        trackingCodes:
-          items:
-            title: Shipment.trackingCodes.[]
-            type: string
-          title: Shipment.trackingCodes
-          type: array
-        status:
-          $ref: '#/components/schemas/ShipmentStatus'
-          title: Shipment.status
-        history:
-          items:
-            $ref: '#/components/schemas/ShipmentStatus'
-            title: Shipment.history.[]
-          title: Shipment.history
-          type: array
-        courier:
-          title: Shipment.courier
-          type: string
-        service:
-          title: Shipment.service
-          type: string
-        estimatedDeliveryDate:
-          title: Shipment.estimatedDeliveryDate
-          type: string
-        deliveredDate:
-          anyOf:
-          - title: Shipment.deliveredDate
-            type: string
-          title: Shipment.deliveredDate
-        trackingMethod:
-          type: string
-          enum:
-          - tracking-service
-          - shopify
-          - courier-api
-          - custom
-          title: Shipment.trackingMethod
-        carrierTrackingUrl:
-          title: Shipment.carrierTrackingUrl
-          type: string
-        trackableStatus:
-          type: string
-          enum:
-          - confirmed
-          - pending
-          - no-tracking
-          title: Shipment.trackableStatus
-      required:
-      - orderId
-      - status
-      additionalProperties: false
-      title: Shipment
-      type: object
     Customer:
       properties:
         firstName:
@@ -314,33 +253,98 @@ components:
       additionalProperties: false
       title: Order
       type: object
-    ShipmentStatus:
+    Shipment:
       properties:
-        statusCode:
+        id:
+          title: Shipment.id
+          type: string
+        orderId:
+          title: Shipment.orderId
+          type: string
+        trackingCodes:
+          items:
+            title: Shipment.trackingCodes.[]
+            type: string
+          title: Shipment.trackingCodes
+          type: array
+        status:
+          $ref: '#/components/schemas/ShipmentStatus'
+          title: Shipment.status
+        history:
+          items:
+            $ref: '#/components/schemas/ShipmentStatus'
+            title: Shipment.history.[]
+          title: Shipment.history
+          type: array
+        courier:
+          title: Shipment.courier
+          type: string
+        service:
+          title: Shipment.service
+          type: string
+        estimatedDeliveryDate:
+          title: Shipment.estimatedDeliveryDate
+          type: string
+        deliveredDate:
+          anyOf:
+          - title: Shipment.deliveredDate
+            type: string
+          title: Shipment.deliveredDate
+        trackingMethod:
           type: string
           enum:
-          - OC
-          - AC
-          - RW
-          - IT
-          - DE
-          - OH
-          - CA
-          - FA
-          - RC
-          - PR
-          title: ShipmentStatus.statusCode
-        statusDescription:
-          title: ShipmentStatus.statusDescription
+          - tracking-service
+          - shopify
+          - courier-api
+          - custom
+          title: Shipment.trackingMethod
+        carrierTrackingUrl:
+          title: Shipment.carrierTrackingUrl
           type: string
-        timestamp:
+        trackableStatus:
           type: string
-          title: ShipmentStatus.timestamp
+          enum:
+          - confirmed
+          - pending
+          - no-tracking
+          title: Shipment.trackableStatus
       required:
-      - statusCode
-      - timestamp
+      - orderId
+      - status
       additionalProperties: false
-      title: ShipmentStatus
+      title: Shipment
+      type: object
+    Address:
+      properties:
+        addressLine1:
+          title: Address.addressLine1
+          type: string
+        addressLine2:
+          title: Address.addressLine2
+          type: string
+        addressLine3:
+          title: Address.addressLine3
+          type: string
+        country:
+          title: Address.country
+          type: string
+        county:
+          title: Address.county
+          type: string
+        city:
+          title: Address.city
+          type: string
+        postalCode:
+          title: Address.postalCode
+          type: string
+      required:
+      - addressLine1
+      - addressLine2
+      - country
+      - city
+      - postalCode
+      additionalProperties: false
+      title: Address
       type: object
     OrderProduct:
       allOf:
@@ -382,37 +386,33 @@ components:
         additionalProperties: false
         type: object
       title: OrderProduct
-    Address:
+    ShipmentStatus:
       properties:
-        addressLine1:
-          title: Address.addressLine1
+        statusCode:
           type: string
-        addressLine2:
-          title: Address.addressLine2
+          enum:
+          - OC
+          - AC
+          - RW
+          - IT
+          - DE
+          - OH
+          - CA
+          - FA
+          - RC
+          - PR
+          title: ShipmentStatus.statusCode
+        statusDescription:
+          title: ShipmentStatus.statusDescription
           type: string
-        addressLine3:
-          title: Address.addressLine3
+        timestamp:
           type: string
-        country:
-          title: Address.country
-          type: string
-        county:
-          title: Address.county
-          type: string
-        city:
-          title: Address.city
-          type: string
-        postalCode:
-          title: Address.postalCode
-          type: string
+          title: ShipmentStatus.timestamp
       required:
-      - addressLine1
-      - addressLine2
-      - country
-      - city
-      - postalCode
+      - statusCode
+      - timestamp
       additionalProperties: false
-      title: Address
+      title: ShipmentStatus
       type: object
   securitySchemes:
     bearerAuth:

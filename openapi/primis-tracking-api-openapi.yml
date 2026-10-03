@@ -77,6 +77,117 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    RetailerPlatform:
+      properties:
+        provider:
+          type: string
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
+      additionalProperties: false
+      title: RetailerPlatform
+      type: object
+    Customer:
+      properties:
+        firstName:
+          title: Customer.firstName
+          type: string
+        secondName:
+          title: Customer.secondName
+          type: string
+        email:
+          title: Customer.email
+          type: string
+        phoneCountryCode:
+          title: Customer.phoneCountryCode
+          type: string
+        phoneNumber:
+          title: Customer.phoneNumber
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+          title: Customer.shippingAddress
+      required:
+      - firstName
+      - secondName
+      - email
+      - phoneCountryCode
+      - phoneNumber
+      - shippingAddress
+      additionalProperties: false
+      title: Customer
+      type: object
+    Price:
+      properties:
+        amount:
+          title: Price.amount
+          type: number
+        currency:
+          title: Price.currency
+          type: string
+      required:
+      - amount
+      - currency
+      additionalProperties: false
+      title: Price
+      type: object
+    Order:
+      properties:
+        id:
+          title: Order.id
+          type: string
+        retailerId:
+          title: Order.retailerId
+          type: string
+        externalOrderId:
+          title: Order.externalOrderId
+          type: string
+        orderNumber:
+          title: Order.orderNumber
+          type: string
+        products:
+          items:
+            $ref: '#/components/schemas/OrderProduct'
+            title: Order.products.[]
+          title: Order.products
+          type: array
+        orderSubtotal:
+          $ref: '#/components/schemas/Price'
+          title: Order.orderSubtotal
+        dateOrdered:
+          type: string
+          title: Order.dateOrdered
+        dateExpectedArrival:
+          type: string
+          title: Order.dateExpectedArrival
+        deliveryCharge:
+          $ref: '#/components/schemas/Price'
+          title: Order.deliveryCharge
+        shipment:
+          $ref: '#/components/schemas/Shipment'
+          title: Order.shipment
+        customer:
+          $ref: '#/components/schemas/Customer'
+          title: Order.customer
+        orderSource:
+          type: string
+          enum:
+          - primis-api
+          - shopify
+          - channel-api
+          title: Order.orderSource
+      additionalProperties: false
+      title: Order
+      type: object
     Shipment:
       properties:
         id:
@@ -138,6 +249,38 @@ components:
       additionalProperties: false
       title: Shipment
       type: object
+    Address:
+      properties:
+        addressLine1:
+          title: Address.addressLine1
+          type: string
+        addressLine2:
+          title: Address.addressLine2
+          type: string
+        addressLine3:
+          title: Address.addressLine3
+          type: string
+        country:
+          title: Address.country
+          type: string
+        county:
+          title: Address.county
+          type: string
+        city:
+          title: Address.city
+          type: string
+        postalCode:
+          title: Address.postalCode
+          type: string
+      required:
+      - addressLine1
+      - addressLine2
+      - country
+      - city
+      - postalCode
+      additionalProperties: false
+      title: Address
+      type: object
     Retailer:
       properties:
         id:
@@ -164,103 +307,6 @@ components:
       - name
       additionalProperties: false
       title: Retailer
-      type: object
-    RetailerPlatform:
-      properties:
-        provider:
-          type: string
-          enum:
-          - shopify
-          - magento
-          - woocommerce
-          - other
-        setupStatus:
-          enum:
-          - store-selection
-          - setup-guide-option
-          - setup-guide-skip
-          - setup-guide-start
-          - setup-complete
-      additionalProperties: false
-      title: RetailerPlatform
-      type: object
-    Customer:
-      properties:
-        firstName:
-          title: Customer.firstName
-          type: string
-        secondName:
-          title: Customer.secondName
-          type: string
-        email:
-          title: Customer.email
-          type: string
-        phoneCountryCode:
-          title: Customer.phoneCountryCode
-          type: string
-        phoneNumber:
-          title: Customer.phoneNumber
-          type: string
-        shippingAddress:
-          $ref: '#/components/schemas/Address'
-          title: Customer.shippingAddress
-      required:
-      - firstName
-      - secondName
-      - email
-      - phoneCountryCode
-      - phoneNumber
-      - shippingAddress
-      additionalProperties: false
-      title: Customer
-      type: object
-    Order:
-      properties:
-        id:
-          title: Order.id
-          type: string
-        retailerId:
-          title: Order.retailerId
-          type: string
-        externalOrderId:
-          title: Order.externalOrderId
-          type: string
-        orderNumber:
-          title: Order.orderNumber
-          type: string
-        products:
-          items:
-            $ref: '#/components/schemas/OrderProduct'
-            title: Order.products.[]
-          title: Order.products
-          type: array
-        orderSubtotal:
-          $ref: '#/components/schemas/Price'
-          title: Order.orderSubtotal
-        dateOrdered:
-          type: string
-          title: Order.dateOrdered
-        dateExpectedArrival:
-          type: string
-          title: Order.dateExpectedArrival
-        deliveryCharge:
-          $ref: '#/components/schemas/Price'
-          title: Order.deliveryCharge
-        shipment:
-          $ref: '#/components/schemas/Shipment'
-          title: Order.shipment
-        customer:
-          $ref: '#/components/schemas/Customer'
-          title: Order.customer
-        orderSource:
-          type: string
-          enum:
-          - primis-api
-          - shopify
-          - channel-api
-          title: Order.orderSource
-      additionalProperties: false
-      title: Order
       type: object
     Campaign:
       properties:
@@ -299,66 +345,6 @@ components:
           title: Campaign.status
       additionalProperties: false
       title: Campaign
-      type: object
-    Address:
-      properties:
-        addressLine1:
-          title: Address.addressLine1
-          type: string
-        addressLine2:
-          title: Address.addressLine2
-          type: string
-        addressLine3:
-          title: Address.addressLine3
-          type: string
-        country:
-          title: Address.country
-          type: string
-        county:
-          title: Address.county
-          type: string
-        city:
-          title: Address.city
-          type: string
-        postalCode:
-          title: Address.postalCode
-          type: string
-      required:
-      - addressLine1
-      - addressLine2
-      - country
-      - city
-      - postalCode
-      additionalProperties: false
-      title: Address
-      type: object
-    ShipmentStatus:
-      properties:
-        statusCode:
-          type: string
-          enum:
-          - OC
-          - AC
-          - RW
-          - IT
-          - DE
-          - OH
-          - CA
-          - FA
-          - RC
-          - PR
-          title: ShipmentStatus.statusCode
-        statusDescription:
-          title: ShipmentStatus.statusDescription
-          type: string
-        timestamp:
-          type: string
-          title: ShipmentStatus.timestamp
-      required:
-      - statusCode
-      - timestamp
-      additionalProperties: false
-      title: ShipmentStatus
       type: object
     OrderProduct:
       allOf:
@@ -400,19 +386,33 @@ components:
         additionalProperties: false
         type: object
       title: OrderProduct
-    Price:
+    ShipmentStatus:
       properties:
-        amount:
-          title: Price.amount
-          type: number
-        currency:
-          title: Price.currency
+        statusCode:
           type: string
+          enum:
+          - OC
+          - AC
+          - RW
+          - IT
+          - DE
+          - OH
+          - CA
+          - FA
+          - RC
+          - PR
+          title: ShipmentStatus.statusCode
+        statusDescription:
+          title: ShipmentStatus.statusDescription
+          type: string
+        timestamp:
+          type: string
+          title: ShipmentStatus.timestamp
       required:
-      - amount
-      - currency
+      - statusCode
+      - timestamp
       additionalProperties: false
-      title: Price
+      title: ShipmentStatus
       type: object
   securitySchemes:
     bearerAuth:

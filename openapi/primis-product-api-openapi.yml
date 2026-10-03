@@ -130,24 +130,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProductVariant:
-      properties:
-        id:
-          title: ProductVariant.id
-          type: string
-        imageUrl:
-          title: ProductVariant.imageUrl
-          type: string
-        title:
-          title: ProductVariant.title
-          type: string
-      required:
-      - id
-      - imageUrl
-      - title
-      additionalProperties: false
-      title: ProductVariant
-      type: object
     ProductColor:
       properties:
         name:
@@ -212,6 +194,24 @@ components:
       - hyperlink
       additionalProperties: false
       title: Product
+      type: object
+    ProductVariant:
+      properties:
+        id:
+          title: ProductVariant.id
+          type: string
+        imageUrl:
+          title: ProductVariant.imageUrl
+          type: string
+        title:
+          title: ProductVariant.title
+          type: string
+      required:
+      - id
+      - imageUrl
+      - title
+      additionalProperties: false
+      title: ProductVariant
       type: object
   securitySchemes:
     bearerAuth:

@@ -172,33 +172,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Retailer:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slogan:
-          type: string
-        faviconUrl:
-          type: string
-        domain:
-          type: string
-        email:
-          type: string
-        live:
-          type: boolean
-        overrideEmail:
-          type: string
-        adminEmail:
-          type: string
-        platform:
-          $ref: '#/components/schemas/RetailerPlatform'
-      required:
-      - name
-      additionalProperties: false
-      title: Retailer
-      type: object
     RetailerPlatform:
       properties:
         provider:
@@ -218,20 +191,17 @@ components:
       additionalProperties: false
       title: RetailerPlatform
       type: object
-    FeaturePermissions:
+    UserFeatureAccess:
       properties:
-        feature:
-          type: string
-        actions:
-          items:
-            type: string
-          title: FeaturePermissions.actions
+        subscription:
           type: array
-      required:
-      - feature
-      - actions
-      additionalProperties: false
-      title: FeaturePermissions
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
     User:
       properties:
@@ -264,17 +234,47 @@ components:
       additionalProperties: false
       title: User
       type: object
-    UserFeatureAccess:
+    FeaturePermissions:
       properties:
-        subscription:
-          type: array
+        feature:
+          type: string
+        actions:
           items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
+            type: string
+          title: FeaturePermissions.actions
           type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
+      required:
+      - feature
+      - actions
+      additionalProperties: false
+      title: FeaturePermissions
+      type: object
+    Retailer:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slogan:
+          type: string
+        faviconUrl:
+          type: string
+        domain:
+          type: string
+        email:
+          type: string
+        live:
+          type: boolean
+        overrideEmail:
+          type: string
+        adminEmail:
+          type: string
+        platform:
+          $ref: '#/components/schemas/RetailerPlatform'
+      required:
+      - name
+      additionalProperties: false
+      title: Retailer
       type: object
   securitySchemes:
     bearerAuth:

@@ -124,6 +124,18 @@ components:
       additionalProperties: false
       title: User
       type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
+      type: object
     Invitation:
       properties:
         user:
@@ -146,18 +158,6 @@ components:
       - expiration
       additionalProperties: false
       title: Invitation
-      type: object
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
       type: object
     FeaturePermissions:
       properties:
