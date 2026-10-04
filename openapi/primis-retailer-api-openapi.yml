@@ -172,37 +172,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RetailerPlatform:
-      properties:
-        provider:
-          type: string
-          enum:
-          - shopify
-          - magento
-          - woocommerce
-          - other
-        setupStatus:
-          enum:
-          - store-selection
-          - setup-guide-option
-          - setup-guide-skip
-          - setup-guide-start
-          - setup-complete
-      additionalProperties: false
-      title: RetailerPlatform
-      type: object
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
-      type: object
     User:
       properties:
         id:
@@ -275,6 +244,37 @@ components:
       - name
       additionalProperties: false
       title: Retailer
+      type: object
+    RetailerPlatform:
+      properties:
+        provider:
+          type: string
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
+      additionalProperties: false
+      title: RetailerPlatform
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
   securitySchemes:
     bearerAuth:

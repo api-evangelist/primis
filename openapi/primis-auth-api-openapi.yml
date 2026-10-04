@@ -193,18 +193,6 @@ components:
       additionalProperties: false
       title: User
       type: object
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
-      type: object
     FeaturePermissions:
       properties:
         feature:
@@ -219,6 +207,18 @@ components:
       - actions
       additionalProperties: false
       title: FeaturePermissions
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
   securitySchemes:
     bearerAuth:

@@ -161,50 +161,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Customer:
-      properties:
-        firstName:
-          title: Customer.firstName
-          type: string
-        secondName:
-          title: Customer.secondName
-          type: string
-        email:
-          title: Customer.email
-          type: string
-        phoneCountryCode:
-          title: Customer.phoneCountryCode
-          type: string
-        phoneNumber:
-          title: Customer.phoneNumber
-          type: string
-        shippingAddress:
-          $ref: '#/components/schemas/Address'
-          title: Customer.shippingAddress
-      required:
-      - firstName
-      - secondName
-      - email
-      - phoneCountryCode
-      - phoneNumber
-      - shippingAddress
-      additionalProperties: false
-      title: Customer
-      type: object
-    Price:
-      properties:
-        amount:
-          title: Price.amount
-          type: number
-        currency:
-          title: Price.currency
-          type: string
-      required:
-      - amount
-      - currency
-      additionalProperties: false
-      title: Price
-      type: object
     Order:
       properties:
         id:
@@ -314,37 +270,35 @@ components:
       additionalProperties: false
       title: Shipment
       type: object
-    Address:
+    Customer:
       properties:
-        addressLine1:
-          title: Address.addressLine1
+        firstName:
+          title: Customer.firstName
           type: string
-        addressLine2:
-          title: Address.addressLine2
+        secondName:
+          title: Customer.secondName
           type: string
-        addressLine3:
-          title: Address.addressLine3
+        email:
+          title: Customer.email
           type: string
-        country:
-          title: Address.country
+        phoneCountryCode:
+          title: Customer.phoneCountryCode
           type: string
-        county:
-          title: Address.county
+        phoneNumber:
+          title: Customer.phoneNumber
           type: string
-        city:
-          title: Address.city
-          type: string
-        postalCode:
-          title: Address.postalCode
-          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+          title: Customer.shippingAddress
       required:
-      - addressLine1
-      - addressLine2
-      - country
-      - city
-      - postalCode
+      - firstName
+      - secondName
+      - email
+      - phoneCountryCode
+      - phoneNumber
+      - shippingAddress
       additionalProperties: false
-      title: Address
+      title: Customer
       type: object
     OrderProduct:
       allOf:
@@ -386,6 +340,52 @@ components:
         additionalProperties: false
         type: object
       title: OrderProduct
+    Address:
+      properties:
+        addressLine1:
+          title: Address.addressLine1
+          type: string
+        addressLine2:
+          title: Address.addressLine2
+          type: string
+        addressLine3:
+          title: Address.addressLine3
+          type: string
+        country:
+          title: Address.country
+          type: string
+        county:
+          title: Address.county
+          type: string
+        city:
+          title: Address.city
+          type: string
+        postalCode:
+          title: Address.postalCode
+          type: string
+      required:
+      - addressLine1
+      - addressLine2
+      - country
+      - city
+      - postalCode
+      additionalProperties: false
+      title: Address
+      type: object
+    Price:
+      properties:
+        amount:
+          title: Price.amount
+          type: number
+        currency:
+          title: Price.currency
+          type: string
+      required:
+      - amount
+      - currency
+      additionalProperties: false
+      title: Price
+      type: object
     ShipmentStatus:
       properties:
         statusCode:

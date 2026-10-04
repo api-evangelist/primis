@@ -93,6 +93,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Invitation:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        token:
+          title: Invitation.token
+          type: string
+        redeemed:
+          title: Invitation.redeemed
+          type: boolean
+        expiration:
+          type: string
+        verification:
+          title: Invitation.verification
+          type: boolean
+      required:
+      - user
+      - token
+      - redeemed
+      - expiration
+      additionalProperties: false
+      title: Invitation
+      type: object
     User:
       properties:
         id:
@@ -124,41 +147,6 @@ components:
       additionalProperties: false
       title: User
       type: object
-    UserFeatureAccess:
-      properties:
-        subscription:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-        role:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeaturePermissions'
-      title: UserFeatureAccess
-      type: object
-    Invitation:
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        token:
-          title: Invitation.token
-          type: string
-        redeemed:
-          title: Invitation.redeemed
-          type: boolean
-        expiration:
-          type: string
-        verification:
-          title: Invitation.verification
-          type: boolean
-      required:
-      - user
-      - token
-      - redeemed
-      - expiration
-      additionalProperties: false
-      title: Invitation
-      type: object
     FeaturePermissions:
       properties:
         feature:
@@ -173,6 +161,18 @@ components:
       - actions
       additionalProperties: false
       title: FeaturePermissions
+      type: object
+    UserFeatureAccess:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeaturePermissions'
+      title: UserFeatureAccess
       type: object
   securitySchemes:
     bearerAuth:
