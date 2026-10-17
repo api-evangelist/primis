@@ -125,43 +125,33 @@ components:
       additionalProperties: false
       title: Order
       type: object
-    Campaign:
+    ShipmentStatus:
       properties:
-        id:
-          title: Campaign.id
-          type: string
-        retailerId:
-          title: Campaign.retailerId
-          type: string
-        name:
-          title: Campaign.name
-          type: string
-        description:
-          title: Campaign.description
-          type: string
-        slogan:
-          title: Campaign.slogan
-          type: string
-        variants:
-          type: array
-        productRecommendations:
-          items:
-            title: Campaign.productRecommendations.[]
-            type: string
-          title: Campaign.productRecommendations
-          type: array
-        productRecommendationsEnabled:
-          title: Campaign.productRecommendationsEnabled
-          type: boolean
-        status:
+        statusCode:
           type: string
           enum:
-          - active
-          - inactive
-          - deleted
-          title: Campaign.status
+          - OC
+          - AC
+          - RW
+          - IT
+          - DE
+          - OH
+          - CA
+          - FA
+          - RC
+          - PR
+          title: ShipmentStatus.statusCode
+        statusDescription:
+          title: ShipmentStatus.statusDescription
+          type: string
+        timestamp:
+          type: string
+          title: ShipmentStatus.timestamp
+      required:
+      - statusCode
+      - timestamp
       additionalProperties: false
-      title: Campaign
+      title: ShipmentStatus
       type: object
     Shipment:
       properties:
@@ -224,35 +214,24 @@ components:
       additionalProperties: false
       title: Shipment
       type: object
-    Customer:
+    RetailerPlatform:
       properties:
-        firstName:
-          title: Customer.firstName
+        provider:
           type: string
-        secondName:
-          title: Customer.secondName
-          type: string
-        email:
-          title: Customer.email
-          type: string
-        phoneCountryCode:
-          title: Customer.phoneCountryCode
-          type: string
-        phoneNumber:
-          title: Customer.phoneNumber
-          type: string
-        shippingAddress:
-          $ref: '#/components/schemas/Address'
-          title: Customer.shippingAddress
-      required:
-      - firstName
-      - secondName
-      - email
-      - phoneCountryCode
-      - phoneNumber
-      - shippingAddress
+          enum:
+          - shopify
+          - magento
+          - woocommerce
+          - other
+        setupStatus:
+          enum:
+          - store-selection
+          - setup-guide-option
+          - setup-guide-skip
+          - setup-guide-start
+          - setup-complete
       additionalProperties: false
-      title: Customer
+      title: RetailerPlatform
       type: object
     Retailer:
       properties:
@@ -321,6 +300,50 @@ components:
         additionalProperties: false
         type: object
       title: OrderProduct
+    Price:
+      properties:
+        amount:
+          title: Price.amount
+          type: number
+        currency:
+          title: Price.currency
+          type: string
+      required:
+      - amount
+      - currency
+      additionalProperties: false
+      title: Price
+      type: object
+    Customer:
+      properties:
+        firstName:
+          title: Customer.firstName
+          type: string
+        secondName:
+          title: Customer.secondName
+          type: string
+        email:
+          title: Customer.email
+          type: string
+        phoneCountryCode:
+          title: Customer.phoneCountryCode
+          type: string
+        phoneNumber:
+          title: Customer.phoneNumber
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+          title: Customer.shippingAddress
+      required:
+      - firstName
+      - secondName
+      - email
+      - phoneCountryCode
+      - phoneNumber
+      - shippingAddress
+      additionalProperties: false
+      title: Customer
+      type: object
     Address:
       properties:
         addressLine1:
@@ -353,66 +376,43 @@ components:
       additionalProperties: false
       title: Address
       type: object
-    RetailerPlatform:
+    Campaign:
       properties:
-        provider:
+        id:
+          title: Campaign.id
+          type: string
+        retailerId:
+          title: Campaign.retailerId
+          type: string
+        name:
+          title: Campaign.name
+          type: string
+        description:
+          title: Campaign.description
+          type: string
+        slogan:
+          title: Campaign.slogan
+          type: string
+        variants:
+          type: array
+        productRecommendations:
+          items:
+            title: Campaign.productRecommendations.[]
+            type: string
+          title: Campaign.productRecommendations
+          type: array
+        productRecommendationsEnabled:
+          title: Campaign.productRecommendationsEnabled
+          type: boolean
+        status:
           type: string
           enum:
-          - shopify
-          - magento
-          - woocommerce
-          - other
-        setupStatus:
-          enum:
-          - store-selection
-          - setup-guide-option
-          - setup-guide-skip
-          - setup-guide-start
-          - setup-complete
+          - active
+          - inactive
+          - deleted
+          title: Campaign.status
       additionalProperties: false
-      title: RetailerPlatform
-      type: object
-    Price:
-      properties:
-        amount:
-          title: Price.amount
-          type: number
-        currency:
-          title: Price.currency
-          type: string
-      required:
-      - amount
-      - currency
-      additionalProperties: false
-      title: Price
-      type: object
-    ShipmentStatus:
-      properties:
-        statusCode:
-          type: string
-          enum:
-          - OC
-          - AC
-          - RW
-          - IT
-          - DE
-          - OH
-          - CA
-          - FA
-          - RC
-          - PR
-          title: ShipmentStatus.statusCode
-        statusDescription:
-          title: ShipmentStatus.statusDescription
-          type: string
-        timestamp:
-          type: string
-          title: ShipmentStatus.timestamp
-      required:
-      - statusCode
-      - timestamp
-      additionalProperties: false
-      title: ShipmentStatus
+      title: Campaign
       type: object
   securitySchemes:
     bearerAuth:
