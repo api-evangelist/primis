@@ -64,6 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-PRIMIS is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Primis (Primis CX) is a post-purchase customer experience platform for eCommerce retailers, headquartered in the UK and backed by 500 Global. Its products — Primis Track (branded order tracking), Primis Ship (discounted multi-carrier shipping), Primis Returns (label-less returns processing), and Primis International (cross-border logistics across 120+ carriers) — reduce "where is my order?" support volume and drive repeat purchases. Primis exposes a REST API (OpenAPI 3.0.0, 42 operations) over HTTPS with bearer-token authentication, covering retailers, orders, shipments, products, campaigns, billing, users, tracking pages, FAQs, and documents, and integrates with Shopify, BigCommerce, Adobe Commerce/Magento, WooCommerce, and carriers such as DPD, DHL, USPS, Evri, UPS, and FedEx.
 
-Backed by: 500-global — https://primis.cx
+**Areas:** Company · E-Commerce · Logistics · Shipping · Returns · Order Tracking · Post-Purchase · Customer Experience · Fulfillment
+
+## PRIMIS on APIs.io
+
+Everything profiled for PRIMIS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/primis/](https://apis.io/providers/primis/)** — or go straight to one of the APIs or properties below.
+
+### APIs (12)
+
+- [PRIMIS Auth API](https://apis.io/apis/primis/primis-auth-api/) — The Auth API from PRIMIS — 6 operation(s) for auth.
+- [PRIMIS Billing API](https://apis.io/apis/primis/primis-billing-api/) — Billing API
+- [PRIMIS Campaign API](https://apis.io/apis/primis/primis-campaign-api/) — Campaign API
+- [PRIMIS Document API](https://apis.io/apis/primis/primis-document-api/) — Documents API
+- [PRIMIS FAQ API](https://apis.io/apis/primis/primis-faq-api/) — FAQ API
+- [PRIMIS Index API](https://apis.io/apis/primis/primis-index-api/) — Index API
+- [PRIMIS Invitation API](https://apis.io/apis/primis/primis-invitation-api/) — The Invitation API from PRIMIS — 3 operation(s) for invitation.
+- [PRIMIS Order API](https://apis.io/apis/primis/primis-order-api/) — Order API
+- [PRIMIS Product API](https://apis.io/apis/primis/primis-product-api/) — Product API
+- [PRIMIS Retailer API](https://apis.io/apis/primis/primis-retailer-api/) — Retailer API
+- [PRIMIS Tracking API](https://apis.io/apis/primis/primis-tracking-api/) — Tracking Context API
+- [PRIMIS User API](https://apis.io/apis/primis/primis-user-api/) — User API
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [primis](https://apis.io/servers/primis/primis/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Primis Agentic Access](https://apis.io/agentic-access/primis/primis-agentic-access/)
+
+#### Collections (12)
+
+Postman and Open Collection request collections.
+
+- [REST Auth API](https://apis.io/collections/primis/open-primis-auth-api/)
+- [REST Auth Billing API](https://apis.io/collections/primis/open-primis-billing-api/)
+- [REST Auth Campaign API](https://apis.io/collections/primis/open-primis-campaign-api/)
+- [REST Auth Document API](https://apis.io/collections/primis/open-primis-document-api/)
+- [REST Auth FAQ API](https://apis.io/collections/primis/open-primis-faq-api/)
+- [REST Auth Index API](https://apis.io/collections/primis/open-primis-index-api/)
+- [REST Auth Invitation API](https://apis.io/collections/primis/open-primis-invitation-api/)
+- [REST Auth Order API](https://apis.io/collections/primis/open-primis-order-api/)
+- [REST Auth Product API](https://apis.io/collections/primis/open-primis-product-api/)
+- [REST Auth Retailer API](https://apis.io/collections/primis/open-primis-retailer-api/)
+- [REST Auth Tracking API](https://apis.io/collections/primis/open-primis-tracking-api/)
+- [REST Auth User API](https://apis.io/collections/primis/open-primis-user-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Primis Openapi Overlay](https://apis.io/overlays/primis/primis-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Primis Authentication](https://apis.io/security/primis/primis-authentication/)
+- [Primis Domain Security](https://apis.io/security/primis/primis-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://primis.cx)
+- [Documentation](https://api.primis.cx/api-docs)
+- [API reference](https://api.primis.cx/api-docs)
+- [Pricing](https://primis.cx/pricing/)
+- [Sign up](https://retailer.primis.cx)
+- [Support](https://primis.cx/contact-us/)
+- [Privacy policy](https://primis.cx/privacy-centre/)
+
+## API Evangelist rating
+
+**Kin Score 35.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 41.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 50.0 |
+| Access clarity | 34.2 |
+
+**Agent readiness 18.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/primis/](https://apis.io/providers/primis/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for PRIMIS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/primis/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
